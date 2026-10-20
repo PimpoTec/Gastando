@@ -1115,6 +1115,20 @@
             Enviar Link
           </button>
         </div>
+        <div class="grid grid-cols-3 gap-2 pt-1">
+          <button type="button" onclick="pushFullStateToSupabase(true)"
+            class="py-2 px-2.5 rounded-xl bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30 font-bold text-[11px] hover:bg-blue-500/25 transition">
+            ☁️ Subir a Nube
+          </button>
+          <button type="button" onclick="pullFromSupabaseCloud(true)"
+            class="py-2 px-2.5 rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30 font-bold text-[11px] hover:bg-purple-500/25 transition">
+            📥 Traer de Nube
+          </button>
+          <button type="button" onclick="signOutSupabase()"
+            class="py-2 px-2.5 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30 font-bold text-[11px] hover:bg-rose-500/25 transition">
+            Cerrar Sesión
+          </button>
+        </div>
         <p id="sb-auth-status" class="text-[11px] text-slate-500 dark:text-slate-400">
           Modo actual: Persistencia Offline-First local activa (lista para sincronizar con Supabase al configurar credenciales).
         </p>
@@ -1567,6 +1581,7 @@
     let quickPaymentMethod = 'visa';
     let isSimulatedOffline = false;
     let supabaseClient = null;
+    let supabaseSessionUser = null;
 
     // Base de datos por usuario (garantiza RLS en local y en Supabase)
     let dbByUser = safeGetStorage('mangoar_db_v1', {
@@ -1831,7 +1846,11 @@
       document.getElementById('chip-usd-rate').textContent = formatMoney(snap.mData.cotizacion_usd, false);
 
       const badgeRls = document.getElementById('badge-user-rls');
-      badgeRls.textContent = currentUserId === 'user_titular_01' ? 'Titular' : 'Usuario 2 (RLS)';
+      if (supabaseSessionUser && supabaseSessionUser.email) {
+        badgeRls.textContent = supabaseSessionUser.email.split('@')[0];
+      } else {
+        badgeRls.textContent = currentUserId === 'user_titular_01' ? 'Titular' : 'Usuario 2 (RLS)';
+      }
 
       // 2. Tarjeta Protagonista: RESULTADO DEL MES
       let activeResultado = snap.resultadoProyFull;
@@ -3315,38 +3334,190 @@
       }
     }
 
-    function syncOfflineQueueNow() {
+    // Convierte fecha dd/mm/aaaa a YYYY-MM-DD para columnas date de PostgreSQL en Supabase
+    function ddmmyyyyToIso(str) {
+      const dt = parseDdMmYyyy(str);
+      if (!dt) return null;
+      const y = dt.getFullYear();
+      const m = String(dt.getMonth() + 1).padStart(2, '0');
+      const d = String(dt.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    async function syncOfflineQueueNow() {
       const count = offlineSyncQueue.length;
       isSimulatedOffline = false;
+      if (supabaseClient && supabaseSessionUser && count > 0) {
+        await pushFullStateToSupabase(false);
+      }
       offlineSyncQueue = [];
       safeSetStorage('mangoar_sync_queue_v1', offlineSyncQueue);
       updateOfflineStatusUI();
       showToast(count > 0 ? `¡${count} movimiento(s) sincronizados con éxito!` : 'Cola sincronizada al día');
     }
 
-    async function pushToSupabaseCloud(actionName, payloadObj) {
-      if (!supabaseClient) return;
+    // Sincroniza tanto el snapshot JSON completo en profiles como las tablas relacionales con RLS (user_id = auth.uid())
+    async function pushFullStateToSupabase(showFeedback) {
+      if (!supabaseClient || !supabaseSessionUser) {
+        if (showFeedback) {
+          showToast('Iniciá sesión con Magic Link primero para subir a la nube');
+        }
+        return;
+      }
       try {
-        // Sincronización con tabla transactions cuando hay sesión activa en Supabase
-        if (actionName === 'insert_transaction' && payloadObj) {
-          await supabaseClient.from('transactions').upsert({
-            client_sync_id: payloadObj.id,
-            anio: payloadObj.anio,
-            mes: payloadObj.mes,
-            descripcion: payloadObj.descripcion,
-            monto_ars: payloadObj.monto_ars,
-            monto_usd: payloadObj.monto_usd,
-            cotizacion: payloadObj.cotizacion,
-            medio_codigo: payloadObj.medio_codigo,
-            categoria_nombre: payloadObj.categoria
-          });
+        const uid = supabaseSessionUser.id;
+        const store = getUserStore();
+
+        // 1. Upsert en profiles (con snapshot JSONB completo + configuración base)
+        await supabaseClient.from('profiles').upsert({
+          user_id: uid,
+          email: supabaseSessionUser.email || null,
+          sueldo_base: store.profile.sueldo_base || 2700000,
+          divisor_horas: store.profile.divisor_horas || 200,
+          recargo_hs_extra: store.profile.recargo_hs_extra || 1.5,
+          cotizacion_usd_default: store.profile.cotizacion_usd_default || 1540,
+          app_state_json: store,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'user_id' });
+
+        // 2. Upsert de todos los meses configurados en tabla months (con fechas en formato ISO YYYY-MM-DD)
+        const monthRows = Object.values(store.months || {}).map((m) => ({
+          user_id: uid,
+          anio: m.anio,
+          mes: m.mes,
+          balance_inicial: m.balance_inicial || 0,
+          sueldo_mes: m.sueldo_mes || 2700000,
+          horas_extras_real: m.horas_extras_real || 0,
+          horas_extras_proy: m.horas_extras_proy || 0,
+          reintegro_real: m.reintegro_real || 0,
+          ingreso_extra_proy: m.ingreso_extra_proy || 0,
+          combustible_proyectado: m.combustible_proyectado || 250000,
+          cotizacion_usd: m.cotizacion_usd || 1540,
+          cierre_visa: ddmmyyyyToIso(m.cierre_visa),
+          vencimiento_visa: ddmmyyyyToIso(m.vencimiento_visa),
+          cierre_master: ddmmyyyyToIso(m.cierre_master),
+          vencimiento_master: ddmmyyyyToIso(m.vencimiento_master),
+          updated_at: new Date().toISOString()
+        }));
+        if (monthRows.length > 0) {
+          await supabaseClient.from('months').upsert(monthRows, { onConflict: 'user_id,anio,mes' });
+        }
+
+        // 3. Upsert de movimientos puntuales en transactions
+        const txRows = (store.spotTransactions || []).map((t) => ({
+          user_id: uid,
+          client_sync_id: `${uid}_${t.id}`,
+          anio: t.anio,
+          mes: t.mes,
+          fecha: ddmmyyyyToIso(t.fecha) || new Date().toISOString().slice(0, 10),
+          descripcion: t.descripcion,
+          monto_ars: t.monto_ars,
+          monto_usd: t.monto_usd,
+          cotizacion: t.cotizacion,
+          medio_codigo: t.medio_codigo,
+          categoria_nombre: t.categoria || 'General',
+          tipo: 'consumo'
+        }));
+        if (txRows.length > 0) {
+          await supabaseClient.from('transactions').upsert(txRows, { onConflict: 'client_sync_id' });
+        }
+
+        // 4. Upsert de gastos fijos recurrentes y deudas
+        const recRows = (store.recurring || []).map((r) => ({
+          user_id: uid,
+          client_sync_id: `${uid}_${r.id}`,
+          descripcion: r.descripcion,
+          monto_ars: r.monto_ars,
+          ubicacion: r.ubicacion || 'fijos',
+          activo: Boolean(r.activo)
+        }));
+        if (recRows.length > 0) {
+          await supabaseClient.from('recurring').upsert(recRows, { onConflict: 'client_sync_id' });
+        }
+
+        const debtRows = (store.debts || []).map((d) => ({
+          user_id: uid,
+          client_sync_id: `${uid}_${d.id}`,
+          nombre: d.nombre,
+          cuota_mensual: d.cuota_mensual,
+          saldo_total: d.saldo_total,
+          tipo: d.tipo || 'externa',
+          activo: Boolean(d.activo)
+        }));
+        if (debtRows.length > 0) {
+          await supabaseClient.from('debts').upsert(debtRows, { onConflict: 'client_sync_id' });
+        }
+
+        if (showFeedback) {
+          showToast('☁️ Datos sincronizados en Supabase');
         }
       } catch (err) {
-        // Si falla la red, encola automáticamente
+        if (showFeedback) {
+          showToast('Error al subir: verificá haber corrido el SQL en Supabase');
+        }
+      }
+    }
+
+    async function pullFromSupabaseCloud(showFeedback) {
+      if (!supabaseClient || !supabaseSessionUser) {
+        if (showFeedback) {
+          showToast('Iniciá sesión primero para descargar tus datos');
+        }
+        return;
+      }
+      try {
+        const uid = supabaseSessionUser.id;
+        const { data: prof, error } = await supabaseClient
+          .from('profiles')
+          .select('app_state_json')
+          .eq('user_id', uid)
+          .maybeSingle();
+
+        if (error) throw error;
+
+        if (prof && prof.app_state_json && prof.app_state_json.months) {
+          dbByUser[currentUserId] = prof.app_state_json;
+          safeSetStorage('mangoar_db_v1', dbByUser);
+          renderAll();
+          if (showFeedback) showToast('📥 Datos descargados de Supabase');
+        } else {
+          // Si es la primera vez que entra con su cuenta en Supabase, sube sus datos actuales
+          await pushFullStateToSupabase(false);
+          if (showFeedback) showToast('☁️ Cuenta inicializada en Supabase con tus datos actuales');
+        }
+      } catch (err) {
+        if (showFeedback) showToast('No se pudo leer la nube (¿corriste el SQL en Supabase?)');
+      }
+    }
+
+    async function pushToSupabaseCloud(actionName, payloadObj) {
+      if (!supabaseClient || !supabaseSessionUser) return;
+      try {
+        const uid = supabaseSessionUser.id;
+        if (actionName === 'delete_transaction' && payloadObj && payloadObj.id) {
+          await supabaseClient.from('transactions').delete().eq('client_sync_id', `${uid}_${payloadObj.id}`);
+        } else if (actionName === 'delete_recurring' && payloadObj && payloadObj.id) {
+          await supabaseClient.from('recurring').delete().eq('client_sync_id', `${uid}_${payloadObj.id}`);
+        } else if (actionName === 'delete_debt' && payloadObj && payloadObj.id) {
+          await supabaseClient.from('debts').delete().eq('client_sync_id', `${uid}_${payloadObj.id}`);
+        }
+        // Siempre sincroniza el estado consolidado del usuario autenticado
+        await pushFullStateToSupabase(false);
+      } catch (err) {
+        // Si falla la red, la cola offline local resguarda los cambios
       }
     }
 
     function openSettingsModal() {
+      const savedCfg = safeGetStorage('mangoar_sb_cfg', null);
+      if (savedCfg) {
+        const uInput = document.getElementById('sb-url-input');
+        const kInput = document.getElementById('sb-key-input');
+        const eInput = document.getElementById('sb-email-input');
+        if (uInput && !uInput.value) uInput.value = savedCfg.url || '';
+        if (kInput && !kInput.value) kInput.value = savedCfg.key || '';
+        if (eInput && !eInput.value && savedCfg.email) eInput.value = savedCfg.email;
+      }
       document.getElementById('modal-settings').classList.remove('hidden');
     }
 
@@ -3369,6 +3540,67 @@
       showToast(newUserId === 'user_titular_01' ? 'Sesión activa: Usuario 1 (Titular)' : 'Sesión RLS: Usuario 2 (Sin acceso a datos del Usuario 1)');
     }
 
+    async function applySupabaseSession(session) {
+      const statusEl = document.getElementById('sb-auth-status');
+      if (session && session.user) {
+        supabaseSessionUser = session.user;
+        const uidKey = `sb_${session.user.id}`;
+        // Si este usuario autenticado aún no tiene store local propio, hereda los datos que estaba usando en user_titular_01
+        if (!dbByUser[uidKey]) {
+          dbByUser[uidKey] = JSON.parse(JSON.stringify(dbByUser['user_titular_01'] || buildInitialSeedForUser('user_titular_01')));
+          dbByUser[uidKey].userId = session.user.id;
+          safeSetStorage('mangoar_db_v1', dbByUser);
+        }
+        currentUserId = uidKey;
+        if (statusEl) {
+          statusEl.textContent = `✅ Conectado a Supabase como ${session.user.email} (RLS activo: auth.uid() = ${session.user.id.slice(0, 8)}...)`;
+        }
+        renderAll();
+        await pullFromSupabaseCloud(false);
+      } else {
+        supabaseSessionUser = null;
+        if (statusEl && supabaseClient) {
+          statusEl.textContent = 'Cliente Supabase listo. Ingresá tu email y tocá "Enviar Link" para iniciar sesión.';
+        }
+        renderAll();
+      }
+    }
+
+    async function initSavedSupabaseClient() {
+      const savedCfg = safeGetStorage('mangoar_sb_cfg', null);
+      if (!savedCfg || !savedCfg.url || !savedCfg.key) return;
+      try {
+        if (window.supabase && window.supabase.createClient) {
+          supabaseClient = window.supabase.createClient(savedCfg.url, savedCfg.key);
+          const { data } = await supabaseClient.auth.getSession();
+          if (data && data.session) {
+            await applySupabaseSession(data.session);
+          }
+          supabaseClient.auth.onAuthStateChange((_event, session) => {
+            applySupabaseSession(session);
+          });
+        }
+      } catch (err) {
+        // Continúa en modo offline local sin interrumpir
+      }
+    }
+
+    async function signOutSupabase() {
+      if (supabaseClient) {
+        try {
+          await supabaseClient.auth.signOut();
+        } catch (e) {}
+      }
+      supabaseSessionUser = null;
+      currentUserId = 'user_titular_01';
+      const statusEl = document.getElementById('sb-auth-status');
+      if (statusEl) {
+        statusEl.textContent = 'Sesión cerrada. Volviste al modo local en este dispositivo.';
+      }
+      renderAll();
+      showToast('Sesión de Supabase cerrada');
+    }
+
     async function connectAndSendMagicLink() {
       const url = document.getElementById('sb-url-input').value.trim();
       const key = document.getElementById('sb-key-input').value.trim();
@@ -3380,21 +3612,31 @@
         showToast('Completá URL y Anon Key de Supabase');
         return;
       }
-      safeSetStorage('mangoar_sb_cfg', { url, key });
+      safeSetStorage('mangoar_sb_cfg', { url, key, email });
 
       try {
         if (window.supabase && window.supabase.createClient) {
           supabaseClient = window.supabase.createClient(url, key);
+          supabaseClient.auth.onAuthStateChange((_event, session) => {
+            applySupabaseSession(session);
+          });
           if (email) {
-            const { error } = await supabaseClient.auth.signInWithOtp({ email });
+            const redirectUrl = window.location.origin && window.location.origin !== 'null'
+              ? window.location.origin + window.location.pathname
+              : undefined;
+            const { error } = await supabaseClient.auth.signInWithOtp({
+              email,
+              options: redirectUrl ? { emailRedirectTo: redirectUrl } : undefined
+            });
             if (error) {
               statusEl.textContent = `Aviso Supabase: ${error.message}`;
             } else {
-              statusEl.textContent = `¡Magic Link enviado a ${email}! Revisá tu casilla para abrir sesión.`;
-              showToast('Magic Link enviado');
+              statusEl.textContent = `¡Magic Link enviado a ${email}! Tocá el enlace en tu correo para abrir sesión sincronizada.`;
+              showToast('Magic Link enviado a tu email');
             }
           } else {
-            statusEl.textContent = 'Cliente Supabase conectado. Ingresá tu email para recibir el Magic Link.';
+            statusEl.textContent = 'Cliente Supabase guardado. Ingresá tu email para recibir el Magic Link.';
+            showToast('Credenciales guardadas');
           }
         }
       } catch (err) {
@@ -3463,7 +3705,7 @@
     // ==========================================================================
     // 8. INICIALIZACIÓN PWA (MANIFEST DINÁMICO + SERVICE WORKER + SQL VIEWER)
     // ==========================================================================
-    const SQL_MIGRATION_TEXT = "-- ============================================================================\n-- MIGRACI\u00d3N COMPLETA SUPABASE \u2014 MANGOAR (MIS GASTOS PERSONALES MENSUALES)\n-- Motor: PostgreSQL + Row Level Security (RLS) estricto por user_id\n-- ============================================================================\n\n-- Habilitar extensi\u00f3n para UUIDs\ncreate extension if not exists \"pgcrypto\";\n\n-- 1. PERFILES / CONFIGURACI\u00d3N DEL USUARIO (profiles)\ncreate table if not exists public.profiles (\n  user_id uuid primary key references auth.users(id) on delete cascade,\n  email text,\n  sueldo_base numeric(14,2) not null default 2700000.00,\n  divisor_horas integer not null default 200,\n  recargo_hs_extra numeric(5,2) not null default 1.50,\n  cotizacion_usd_default numeric(12,2) not null default 1540.00,\n  tema_oscuro boolean not null default true,\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now()\n);\n\n-- 2. MESES (months) \u2014 Estado e ingresos tanto REAL como PROYECTADO por mes\ncreate table if not exists public.months (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  anio integer not null check (anio >= 2020 and anio <= 2100),\n  mes integer not null check (mes >= 1 and mes <= 12),\n  balance_inicial numeric(14,2) not null default 0.00,\n  sueldo_mes numeric(14,2) not null default 2700000.00,\n  horas_extras_real numeric(6,2) not null default 0.00,\n  horas_extras_proy numeric(6,2) not null default 0.00,\n  reintegro_real numeric(14,2) not null default 0.00,\n  reintegro_proy numeric(14,2) not null default 0.00,\n  ingreso_extra_real numeric(14,2) not null default 0.00,\n  ingreso_extra_proy numeric(14,2) not null default 0.00,\n  combustible_proyectado numeric(14,2) not null default 250000.00,\n  cotizacion_usd numeric(12,2) not null default 1540.00,\n  cierre_visa date,       -- Fecha de cierre mensual de Visa Cr\u00e9dito (editable mes a mes)\n  vencimiento_visa date,  -- Fecha de vencimiento mensual de Visa Cr\u00e9dito\n  cierre_master date,     -- Fecha de cierre mensual de Master Cr\u00e9dito (editable mes a mes)\n  vencimiento_master date,-- Fecha de vencimiento mensual de Master Cr\u00e9dito\n  notas text,\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now(),\n  unique (user_id, anio, mes)\n);\n\n-- 3. MEDIOS DE PAGO (payment_methods) \u2014 Visa, Master, Efectivo/D\u00e9bito\ncreate table if not exists public.payment_methods (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  codigo text not null, -- 'visa', 'master', 'efectivo'\n  nombre text not null,\n  es_tarjeta boolean not null default true,\n  color text not null default '#3b82f6',\n  orden integer not null default 1,\n  activo boolean not null default true,\n  created_at timestamptz not null default now()\n);\n\n-- 4. CATEGOR\u00cdAS (categories) \u2014 Lista para Etapa 1 y gr\u00e1ficos de Etapa 2\ncreate table if not exists public.categories (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  nombre text not null,\n  color text not null default '#10b981',\n  icono text not null default 'tag',\n  presupuesto_mensual numeric(14,2), -- Preparado para Etapa 2\n  created_at timestamptz not null default now()\n);\n\n-- 5. PLANTILLAS DE GASTOS FIJOS RECURRENTES (recurring)\ncreate table if not exists public.recurring (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  descripcion text not null,\n  monto_ars numeric(14,2) not null default 0.00,\n  monto_usd numeric(12,2),\n  payment_method_id uuid references public.payment_methods(id) on delete set null,\n  category_id uuid references public.categories(id) on delete set null,\n  ubicacion text not null default 'fijos' check (ubicacion in ('fijos', 'tarjeta_visa', 'tarjeta_master')),\n  desde_anio integer not null default 2026,\n  desde_mes integer not null default 1,\n  hasta_anio integer,\n  hasta_mes integer,\n  activo boolean not null default true,\n  created_at timestamptz not null default now()\n);\n\n-- 6. DEUDAS EXTERNAS Y PR\u00c9STAMOS (debts)\ncreate table if not exists public.debts (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  nombre text not null,\n  saldo_total numeric(14,2) not null default 0.00,\n  cuota_mensual numeric(14,2) not null default 0.00,\n  tipo text not null check (tipo in ('externa', 'prestamo')),\n  activo boolean not null default true,\n  created_at timestamptz not null default now()\n);\n\n-- 7. MOVIMIENTOS Y CONSUMOS (transactions)\n-- Incluye consumos puntuales, compras en d\u00f3lares y compras en cuotas\ncreate table if not exists public.transactions (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  month_id uuid references public.months(id) on delete cascade,\n  anio integer not null,\n  mes integer not null,\n  fecha date not null default current_date,\n  descripcion text not null,\n  monto_ars numeric(14,2) not null default 0.00,\n  monto_usd numeric(12,2),\n  cotizacion numeric(12,2),\n  payment_method_id uuid references public.payment_methods(id) on delete set null,\n  medio_codigo text not null default 'visa', -- 'visa' | 'master' | 'efectivo'\n  category_id uuid references public.categories(id) on delete set null,\n  categoria_nombre text not null default 'General',\n  tipo text not null default 'consumo' check (tipo in ('consumo', 'fijo', 'deuda', 'combustible')),\n  cuota_actual integer,\n  cuota_total integer,\n  grupo_cuota_id uuid, -- Une todas las cuotas de una misma compra\n  recurrente_id uuid references public.recurring(id) on delete set null,\n  client_sync_id text unique, -- Idempotencia para la cola de sincronizaci\u00f3n offline\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now()\n);\n\n-- \u00cdNDICES PARA CONSULTAS R\u00c1PIDAS POR MES Y USUARIO\ncreate index if not exists idx_months_user_ym on public.months(user_id, anio, mes);\ncreate index if not exists idx_tx_user_ym on public.transactions(user_id, anio, mes);\ncreate index if not exists idx_tx_grupo_cuota on public.transactions(grupo_cuota_id);\ncreate index if not exists idx_recurring_user on public.recurring(user_id, activo);\ncreate index if not exists idx_debts_user on public.debts(user_id, activo);\n\n-- ============================================================================\n-- ROW LEVEL SECURITY (RLS) \u2014 Cada usuario ve y modifica SOLO sus propios datos\n-- ============================================================================\n\nalter table public.profiles enable row level security;\nalter table public.months enable row level security;\nalter table public.payment_methods enable row level security;\nalter table public.categories enable row level security;\nalter table public.recurring enable row level security;\nalter table public.debts enable row level security;\nalter table public.transactions enable row level security;\n\n-- Pol\u00edticas para profiles\ncreate policy \"profiles_select_own\" on public.profiles for select using (auth.uid() = user_id);\ncreate policy \"profiles_insert_own\" on public.profiles for insert with check (auth.uid() = user_id);\ncreate policy \"profiles_update_own\" on public.profiles for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"profiles_delete_own\" on public.profiles for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para months\ncreate policy \"months_select_own\" on public.months for select using (auth.uid() = user_id);\ncreate policy \"months_insert_own\" on public.months for insert with check (auth.uid() = user_id);\ncreate policy \"months_update_own\" on public.months for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"months_delete_own\" on public.months for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para payment_methods\ncreate policy \"payment_methods_select_own\" on public.payment_methods for select using (auth.uid() = user_id);\ncreate policy \"payment_methods_insert_own\" on public.payment_methods for insert with check (auth.uid() = user_id);\ncreate policy \"payment_methods_update_own\" on public.payment_methods for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"payment_methods_delete_own\" on public.payment_methods for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para categories\ncreate policy \"categories_select_own\" on public.categories for select using (auth.uid() = user_id);\ncreate policy \"categories_insert_own\" on public.categories for insert with check (auth.uid() = user_id);\ncreate policy \"categories_update_own\" on public.categories for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"categories_delete_own\" on public.categories for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para recurring\ncreate policy \"recurring_select_own\" on public.recurring for select using (auth.uid() = user_id);\ncreate policy \"recurring_insert_own\" on public.recurring for insert with check (auth.uid() = user_id);\ncreate policy \"recurring_update_own\" on public.recurring for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"recurring_delete_own\" on public.recurring for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para debts\ncreate policy \"debts_select_own\" on public.debts for select using (auth.uid() = user_id);\ncreate policy \"debts_insert_own\" on public.debts for insert with check (auth.uid() = user_id);\ncreate policy \"debts_update_own\" on public.debts for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"debts_delete_own\" on public.debts for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para transactions\ncreate policy \"transactions_select_own\" on public.transactions for select using (auth.uid() = user_id);\ncreate policy \"transactions_insert_own\" on public.transactions for insert with check (auth.uid() = user_id);\ncreate policy \"transactions_update_own\" on public.transactions for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"transactions_delete_own\" on public.transactions for delete using (auth.uid() = user_id);\n";
+    const SQL_MIGRATION_TEXT = "-- ============================================================================\n-- MIGRACI\u00d3N COMPLETA SUPABASE \u2014 MANGOAR (MIS GASTOS PERSONALES MENSUALES)\n-- Motor: PostgreSQL + Row Level Security (RLS) estricto por user_id\n-- ============================================================================\n\n-- Habilitar extensi\u00f3n para UUIDs\ncreate extension if not exists \"pgcrypto\";\n\n-- 1. PERFILES / CONFIGURACI\u00d3N DEL USUARIO (profiles)\ncreate table if not exists public.profiles (\n  user_id uuid primary key references auth.users(id) on delete cascade,\n  email text,\n  sueldo_base numeric(14,2) not null default 2700000.00,\n  divisor_horas integer not null default 200,\n  recargo_hs_extra numeric(5,2) not null default 1.50,\n  cotizacion_usd_default numeric(12,2) not null default 1540.00,\n  tema_oscuro boolean not null default true,\n  app_state_json jsonb, -- Snapshot completo para sincronizaci\u00f3n instant\u00e1nea multi-dispositivo\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now()\n);\n\n-- 2. MESES (months) \u2014 Estado e ingresos tanto REAL como PROYECTADO por mes\ncreate table if not exists public.months (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  anio integer not null check (anio >= 2020 and anio <= 2100),\n  mes integer not null check (mes >= 1 and mes <= 12),\n  balance_inicial numeric(14,2) not null default 0.00,\n  sueldo_mes numeric(14,2) not null default 2700000.00,\n  horas_extras_real numeric(6,2) not null default 0.00,\n  horas_extras_proy numeric(6,2) not null default 0.00,\n  reintegro_real numeric(14,2) not null default 0.00,\n  reintegro_proy numeric(14,2) not null default 0.00,\n  ingreso_extra_real numeric(14,2) not null default 0.00,\n  ingreso_extra_proy numeric(14,2) not null default 0.00,\n  combustible_proyectado numeric(14,2) not null default 250000.00,\n  cotizacion_usd numeric(12,2) not null default 1540.00,\n  cierre_visa date,       -- Fecha de cierre mensual de Visa Cr\u00e9dito (editable mes a mes)\n  vencimiento_visa date,  -- Fecha de vencimiento mensual de Visa Cr\u00e9dito\n  cierre_master date,     -- Fecha de cierre mensual de Master Cr\u00e9dito (editable mes a mes)\n  vencimiento_master date,-- Fecha de vencimiento mensual de Master Cr\u00e9dito\n  notas text,\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now(),\n  unique (user_id, anio, mes)\n);\n\n-- 3. MEDIOS DE PAGO (payment_methods) \u2014 Visa, Master, Efectivo/D\u00e9bito\ncreate table if not exists public.payment_methods (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  codigo text not null, -- 'visa', 'master', 'efectivo'\n  nombre text not null,\n  es_tarjeta boolean not null default true,\n  color text not null default '#3b82f6',\n  orden integer not null default 1,\n  activo boolean not null default true,\n  created_at timestamptz not null default now()\n);\n\n-- 4. CATEGOR\u00cdAS (categories) \u2014 Lista para Etapa 1 y gr\u00e1ficos de Etapa 2\ncreate table if not exists public.categories (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  nombre text not null,\n  color text not null default '#10b981',\n  icono text not null default 'tag',\n  presupuesto_mensual numeric(14,2), -- Preparado para Etapa 2\n  created_at timestamptz not null default now()\n);\n\n-- 5. PLANTILLAS DE GASTOS FIJOS RECURRENTES (recurring)\ncreate table if not exists public.recurring (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  descripcion text not null,\n  monto_ars numeric(14,2) not null default 0.00,\n  monto_usd numeric(12,2),\n  payment_method_id uuid references public.payment_methods(id) on delete set null,\n  category_id uuid references public.categories(id) on delete set null,\n  ubicacion text not null default 'fijos' check (ubicacion in ('fijos', 'tarjeta_visa', 'tarjeta_master')),\n  desde_anio integer not null default 2026,\n  desde_mes integer not null default 1,\n  hasta_anio integer,\n  hasta_mes integer,\n  activo boolean not null default true,\n  client_sync_id text unique,\n  created_at timestamptz not null default now()\n);\n\n-- 6. DEUDAS EXTERNAS Y PR\u00c9STAMOS (debts)\ncreate table if not exists public.debts (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  nombre text not null,\n  saldo_total numeric(14,2) not null default 0.00,\n  cuota_mensual numeric(14,2) not null default 0.00,\n  tipo text not null check (tipo in ('externa', 'prestamo')),\n  activo boolean not null default true,\n  client_sync_id text unique,\n  created_at timestamptz not null default now()\n);\n\n-- 7. MOVIMIENTOS Y CONSUMOS (transactions)\n-- Incluye consumos puntuales, compras en d\u00f3lares y compras en cuotas\ncreate table if not exists public.transactions (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  month_id uuid references public.months(id) on delete cascade,\n  anio integer not null,\n  mes integer not null,\n  fecha date not null default current_date,\n  descripcion text not null,\n  monto_ars numeric(14,2) not null default 0.00,\n  monto_usd numeric(12,2),\n  cotizacion numeric(12,2),\n  payment_method_id uuid references public.payment_methods(id) on delete set null,\n  medio_codigo text not null default 'visa', -- 'visa' | 'master' | 'efectivo'\n  category_id uuid references public.categories(id) on delete set null,\n  categoria_nombre text not null default 'General',\n  tipo text not null default 'consumo' check (tipo in ('consumo', 'fijo', 'deuda', 'combustible')),\n  cuota_actual integer,\n  cuota_total integer,\n  grupo_cuota_id uuid, -- Une todas las cuotas de una misma compra\n  recurrente_id uuid references public.recurring(id) on delete set null,\n  client_sync_id text unique, -- Idempotencia para la cola de sincronizaci\u00f3n offline\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now()\n);\n\n-- \u00cdNDICES PARA CONSULTAS R\u00c1PIDAS POR MES Y USUARIO\ncreate index if not exists idx_months_user_ym on public.months(user_id, anio, mes);\ncreate index if not exists idx_tx_user_ym on public.transactions(user_id, anio, mes);\ncreate index if not exists idx_tx_grupo_cuota on public.transactions(grupo_cuota_id);\ncreate index if not exists idx_recurring_user on public.recurring(user_id, activo);\ncreate index if not exists idx_debts_user on public.debts(user_id, activo);\n\n-- ============================================================================\n-- ROW LEVEL SECURITY (RLS) \u2014 Cada usuario ve y modifica SOLO sus propios datos\n-- ============================================================================\n\nalter table public.profiles enable row level security;\nalter table public.months enable row level security;\nalter table public.payment_methods enable row level security;\nalter table public.categories enable row level security;\nalter table public.recurring enable row level security;\nalter table public.debts enable row level security;\nalter table public.transactions enable row level security;\n\n-- Pol\u00edticas para profiles\ncreate policy \"profiles_select_own\" on public.profiles for select using (auth.uid() = user_id);\ncreate policy \"profiles_insert_own\" on public.profiles for insert with check (auth.uid() = user_id);\ncreate policy \"profiles_update_own\" on public.profiles for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"profiles_delete_own\" on public.profiles for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para months\ncreate policy \"months_select_own\" on public.months for select using (auth.uid() = user_id);\ncreate policy \"months_insert_own\" on public.months for insert with check (auth.uid() = user_id);\ncreate policy \"months_update_own\" on public.months for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"months_delete_own\" on public.months for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para payment_methods\ncreate policy \"payment_methods_select_own\" on public.payment_methods for select using (auth.uid() = user_id);\ncreate policy \"payment_methods_insert_own\" on public.payment_methods for insert with check (auth.uid() = user_id);\ncreate policy \"payment_methods_update_own\" on public.payment_methods for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"payment_methods_delete_own\" on public.payment_methods for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para categories\ncreate policy \"categories_select_own\" on public.categories for select using (auth.uid() = user_id);\ncreate policy \"categories_insert_own\" on public.categories for insert with check (auth.uid() = user_id);\ncreate policy \"categories_update_own\" on public.categories for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"categories_delete_own\" on public.categories for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para recurring\ncreate policy \"recurring_select_own\" on public.recurring for select using (auth.uid() = user_id);\ncreate policy \"recurring_insert_own\" on public.recurring for insert with check (auth.uid() = user_id);\ncreate policy \"recurring_update_own\" on public.recurring for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"recurring_delete_own\" on public.recurring for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para debts\ncreate policy \"debts_select_own\" on public.debts for select using (auth.uid() = user_id);\ncreate policy \"debts_insert_own\" on public.debts for insert with check (auth.uid() = user_id);\ncreate policy \"debts_update_own\" on public.debts for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"debts_delete_own\" on public.debts for delete using (auth.uid() = user_id);\n\n-- Pol\u00edticas para transactions\ncreate policy \"transactions_select_own\" on public.transactions for select using (auth.uid() = user_id);\ncreate policy \"transactions_insert_own\" on public.transactions for insert with check (auth.uid() = user_id);\ncreate policy \"transactions_update_own\" on public.transactions for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"transactions_delete_own\" on public.transactions for delete using (auth.uid() = user_id);\n";
 
     function setupDynamicPWA() {
       try {
@@ -3505,6 +3747,7 @@
       setupDynamicPWA();
       updateOfflineStatusUI();
       renderAll();
+      initSavedSupabaseClient();
     });
   </script>
 </body>

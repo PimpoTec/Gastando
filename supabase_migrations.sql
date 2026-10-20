@@ -15,6 +15,7 @@ create table if not exists public.profiles (
   recargo_hs_extra numeric(5,2) not null default 1.50,
   cotizacion_usd_default numeric(12,2) not null default 1540.00,
   tema_oscuro boolean not null default true,
+  app_state_json jsonb, -- Snapshot completo para sincronización instantánea multi-dispositivo
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -84,6 +85,7 @@ create table if not exists public.recurring (
   hasta_anio integer,
   hasta_mes integer,
   activo boolean not null default true,
+  client_sync_id text unique,
   created_at timestamptz not null default now()
 );
 
@@ -96,6 +98,7 @@ create table if not exists public.debts (
   cuota_mensual numeric(14,2) not null default 0.00,
   tipo text not null check (tipo in ('externa', 'prestamo')),
   activo boolean not null default true,
+  client_sync_id text unique,
   created_at timestamptz not null default now()
 );
 
