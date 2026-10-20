@@ -1,9 +1,9 @@
 {
-  "name": "MangoAR — Control de Gastos Mensuales",
+  "name": "MangoAR — Mis Gastos Mensuales",
   "short_name": "MangoAR",
-  "description": "PWA mobile-first para llevar gastos personales mensuales, tarjetas, cuotas y proyección.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "description": "Control de gastos personales mensuales en ARS y USD con ciclos de tarjeta, cuotas y gastos fijos.",
+  "start_url": "/index.html",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0b0f19",
