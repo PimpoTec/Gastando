@@ -1,22 +1,622 @@
 <!DOCTYPE html>
-<html lang="es-AR" class="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0f19" id="meta-theme-color" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="MangoAR" />
-  <title>MangoAR — Mis Gastos Mensuales</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/svg+xml" href="icon-192.svg" />
+<html lang="es-AR" class="dark"><head><script data-bard-client-injected="true">(function(firebaseConfig, initialAuthToken, appId) {
+        window.__firebase_config = firebaseConfig;
+        window.__initial_auth_token = initialAuthToken;
+        window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","eyJhbGciOiJSUzI1NiIsImtpZCI6IjExNjRiNzdiNDMzZDdhMDAyMWI4NjE4YjhjYTU3ZTMyZGI5MWUxMTMiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0BiYXJkLWZyb250ZW5kLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiaHR0cHM6Ly9pZGVudGl0eXRvb2xraXQuZ29vZ2xlYXBpcy5jb20vZ29vZ2xlLmlkZW50aXR5LmlkZW50aXR5dG9vbGtpdC52MS5JZGVudGl0eVRvb2xraXQiLCJ1aWQiOiIwNzEzOTAzMjE1MDIyMDgwMDk2NiIsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLWZic3ZjQGJhcmQtZnJvbnRlbmQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJjbGFpbXMiOnsiYXBwSWQiOiJjXzMyNmQ0N2ZlNWNmOTc0ZGRfNGQyNzJmMDNfbWlzX2dhc3Rvc19wd2EuaHRtbC01NjgifSwiZXhwIjoxNzkyNTQyNzQ1LCJpYXQiOjE3OTI1MzkxNDUsImFsZyI6IlJTMjU2In0.MuTvTR4Ywz7AJA58k3fnZk96dtkH1CpttqT4BsysgIaVUlmg1_d4Pc2a0RMBTUTd585KdB7qtDWrL6xU8R58Yh6Do0QtZnogDiqTJ15VnAKhIx_F1N6A0AlzDgK2jDLPoRCR4EQDt1Cxrfd84aiWLXZ-319sqWrwj9XfqlGQx9oa2wVZvX2O3hfRsaYIuqDRNl9TXGGjSnEDvhYQnP5L9mRbnE89G_qc92ZmY_PyWaJBsMBkPvLkw2n2kjkgO5NNdfgBS9csTRk9gJHEbZyyjroGh-yPOSoXqi89WYyd7IP_yUDu2osJRECmk6NHm2J0IzaJ3W1aRaVcJ7HVxJVgrQ","c_326d47fe5cf974dd_4d272f03_mis_gastos_pwa.html-568")</script><script data-bard-client-injected="true">
+  document.addEventListener('input', (event) => {
+    if (event.target && (event.target.isContentEditable || event.target.hasAttribute('contenteditable'))) {
+      const clonedDoc = document.cloneNode(true);
+      const injectedScripts = clonedDoc.querySelectorAll('[data-bard-client-injected="true"]');
+      injectedScripts.forEach(el => el.remove());
+      window.parent.postMessage({
+        type: 'inlineEdit',
+        html: '<!DOCTYPE html>\n' + clonedDoc.documentElement.outerHTML
+      }, '*');
+    }
+  });
+</script><script data-bard-client-injected="true">(function(){'use strict';window.addEventListener("message",a=>{a.data&&a.data.type==="SUPPLEMENTAL_DATA_UPDATE"&&window.dispatchEvent(new CustomEvent("supplementaldataupdate",{detail:a.data.data}))});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  const SCROLL_KEYS = new Set([
+    'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
+    ' ', 'Spacebar', 'PageUp', 'PageDown', 'Home', 'End',
+  ]);
+  const HORIZONTAL_KEYS = new Set(['ArrowLeft', 'ArrowRight']);
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  function isTextEntryTarget(target) {
+    if (!target) return false;
+    const tagName = target.tagName;
+    return tagName === 'INPUT' || tagName === 'TEXTAREA' ||
+        tagName === 'SELECT' || target.isContentEditable === true;
+  }
+
+  // An element absorbs the key only if it both overflows on the axis being
+  // scrolled and is configured to scroll on that axis. The cheap dimension
+  // test runs first because getComputedStyle forces a style recalc, and this
+  // runs on every keypress. Each axis is read from its own longhand: the
+  // 'overflow' shorthand serializes as two values when the axes differ, which
+  // is the common 'overflow-x: hidden; overflow-y: auto' pane.
+  function canScroll(node, horizontal) {
+    const overflows = horizontal ? node.scrollWidth > node.clientWidth
+                                 : node.scrollHeight > node.clientHeight;
+    if (!overflows) return false;
+    const style = window.getComputedStyle(node);
+    const overflow = horizontal ? style.overflowX : style.overflowY;
+    return overflow === 'auto' || overflow === 'scroll';
+  }
+
+  // Walks up from the event target so nested scrollers keep their behavior.
+  // <body> is included because pages that pin the root height make it the
+  // scroll container.
+  function hasScrollableAncestor(target, horizontal) {
+    let node = target;
+    while (node && node !== document.documentElement) {
+      if (canScroll(node, horizontal)) return true;
+      node = node.parentElement;
+    }
+    return false;
+  }
+
+  function rootCanScroll(horizontal) {
+    const scroller = document.scrollingElement || document.documentElement;
+    if (!scroller) return false;
+    // Tolerate a pixel of rounding so subpixel layouts do not look scrollable.
+    return horizontal ? scroller.scrollWidth > window.innerWidth + 1
+                      : scroller.scrollHeight > window.innerHeight + 1;
+  }
+
+  window.addEventListener('keydown', function(event) {
+    if (!SCROLL_KEYS.has(event.key)) return;
+    if (event.defaultPrevented) return;
+    // Alt and Meta turn arrows into browser history navigation, and Ctrl is
+    // reserved for shortcuts, so none of them are scroll intent.
+    if (event.altKey || event.metaKey || event.ctrlKey) return;
+
+    const target = event.target;
+    if (isTextEntryTarget(target)) return;
+
+    // Anything that can still absorb the scroll gets to keep it.
+    const horizontal = HORIZONTAL_KEYS.has(event.key);
+    if (rootCanScroll(horizontal)) return;
+    if (hasScrollableAncestor(target, horizontal)) return;
+
+    event.preventDefault();
+  }, {capture: true, passive: false});
+})();</script><script data-bard-client-injected="true">(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script data-bard-client-injected="true">
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}" data-bard-client-injected="true">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.j=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.h=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.i="";var l=0,t=null,r=null,q=[],F=new TextEncoder,G=new TextDecoder;
+c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*16|0;return(f===
+"x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;(g=t)==null||g.postMessage(a)}};
+Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script data-bard-client-injected="true">((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedGenerateImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedImageTransformModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image","imageTransformModelName":"gemini-3-pro-image","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"],"deprecatedGenerateImageModelNames":["gemini-2.5-flash-image-preview","gemini-2.5-flash-image","gemini-3.1-flash-image-preview"],"deprecatedImageTransformModelNames":["gemini-3-pro-image-preview-11-2025"]})</script><script data-bard-client-injected="true">(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f19" id="meta-theme-color">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MangoAR">
+  <title>MangoAR — Mis Gastos Mensuales</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
 
   <script>
     tailwind.config = {
@@ -60,7 +660,7 @@
       animation: slideUpSheet 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
   </style>
-</head>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, system-ui, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono, monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-0{bottom:0px}.bottom-20{bottom:5rem}.left-0{left:0px}.left-1\/2{left:50%}.left-3{left:0.75rem}.right-0{right:0px}.right-2\.5{right:0.625rem}.right-4{right:1rem}.top-0{top:0px}.top-16{top:4rem}.top-2\.5{top:0.625rem}.top-3{top:0.75rem}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.col-span-2{grid-column:span 2 / span 2}.col-span-3{grid-column:span 3 / span 3}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-2\.5{margin-bottom:0.625rem}.mb-3{margin-bottom:0.75rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-2\.5{margin-top:0.625rem}.mt-3{margin-top:0.75rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-2{height:0.5rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-9{height:2.25rem}.max-h-\[92vh\]{max-height:92vh}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-12{width:3rem}.w-2{width:0.5rem}.w-20{width:5rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-9{width:2.25rem}.w-full{width:100%}.max-w-lg{max-width:32rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-2{--tw-translate-y:-0.5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-3\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.875rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.875rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.rounded-t-3xl{border-top-left-radius:1.5rem;border-top-right-radius:1.5rem}.border{border-width:1px}.border-x{border-left-width:1px;border-right-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-amber-400\/20{border-color:rgb(251 191 36 / 0.2)}.border-amber-500\/30{border-color:rgb(245 158 11 / 0.3)}.border-amber-500\/40{border-color:rgb(245 158 11 / 0.4)}.border-blue-400\/20{border-color:rgb(96 165 250 / 0.2)}.border-blue-500\/30{border-color:rgb(59 130 246 / 0.3)}.border-blue-500\/40{border-color:rgb(59 130 246 / 0.4)}.border-emerald-500\/30{border-color:rgb(16 185 129 / 0.3)}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-indigo-500\/30{border-color:rgb(99 102 241 / 0.3)}.border-purple-500\/30{border-color:rgb(168 85 247 / 0.3)}.border-rose-500\/30{border-color:rgb(244 63 94 / 0.3)}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-200\/70{border-color:rgb(226 232 240 / 0.7)}.border-slate-200\/80{border-color:rgb(226 232 240 / 0.8)}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.bg-amber-500\/15{background-color:rgb(245 158 11 / 0.15)}.bg-amber-500\/20{background-color:rgb(245 158 11 / 0.2)}.bg-amber-500\/5{background-color:rgb(245 158 11 / 0.05)}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-blue-500\/10{background-color:rgb(59 130 246 / 0.1)}.bg-blue-500\/15{background-color:rgb(59 130 246 / 0.15)}.bg-blue-500\/20{background-color:rgb(59 130 246 / 0.2)}.bg-blue-500\/5{background-color:rgb(59 130 246 / 0.05)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}.bg-emerald-500\/15{background-color:rgb(16 185 129 / 0.15)}.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}.bg-emerald-500\/5{background-color:rgb(16 185 129 / 0.05)}.bg-indigo-500\/5{background-color:rgb(99 102 241 / 0.05)}.bg-purple-500{--tw-bg-opacity:1;background-color:rgb(168 85 247 / var(--tw-bg-opacity, 1))}.bg-purple-500\/15{background-color:rgb(168 85 247 / 0.15)}.bg-rose-500{--tw-bg-opacity:1;background-color:rgb(244 63 94 / var(--tw-bg-opacity, 1))}.bg-rose-500\/15{background-color:rgb(244 63 94 / 0.15)}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-100\/80{background-color:rgb(241 245 249 / 0.8)}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-200\/80{background-color:rgb(226 232 240 / 0.8)}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-900\/95{background-color:rgb(15 23 42 / 0.95)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23 / var(--tw-bg-opacity, 1))}.bg-slate-950\/75{background-color:rgb(2 6 23 / 0.75)}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-amber-950\/90{--tw-gradient-from:rgb(69 26 3 / 0.9) var(--tw-gradient-from-position);--tw-gradient-to:rgb(69 26 3 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-blue-950\/90{--tw-gradient-from:rgb(23 37 84 / 0.9) var(--tw-gradient-from-position);--tw-gradient-to:rgb(23 37 84 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-emerald-500{--tw-gradient-from:#10b981 var(--tw-gradient-from-position);--tw-gradient-to:rgb(16 185 129 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-emerald-950\/95{--tw-gradient-from:rgb(2 44 34 / 0.95) var(--tw-gradient-from-position);--tw-gradient-to:rgb(2 44 34 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-600{--tw-gradient-from:#4f46e5 var(--tw-gradient-from-position);--tw-gradient-to:rgb(79 70 229 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-slate-900{--tw-gradient-from:#0f172a var(--tw-gradient-from-position);--tw-gradient-to:rgb(15 23 42 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-slate-900{--tw-gradient-to:rgb(15 23 42 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #0f172a var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-indigo-950{--tw-gradient-to:#1e1b4b var(--tw-gradient-to-position)}.to-slate-900{--tw-gradient-to:#0f172a var(--tw-gradient-to-position)}.to-teal-500{--tw-gradient-to:#14b8a6 var(--tw-gradient-to-position)}.to-teal-700{--tw-gradient-to:#0f766e var(--tw-gradient-to-position)}.to-violet-600{--tw-gradient-to:#7c3aed var(--tw-gradient-to-position)}.stroke-\[2\.8\]{stroke-width:2.8}.p-0\.5{padding:0.125rem}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.pb-1{padding-bottom:0.25rem}.pb-2{padding-bottom:0.5rem}.pb-2\.5{padding-bottom:0.625rem}.pb-28{padding-bottom:7rem}.pl-9{padding-left:2.25rem}.pr-8{padding-right:2rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.pt-2\.5{padding-top:0.625rem}.pt-3{padding-top:0.75rem}.pt-4{padding-top:1rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:JetBrains Mono, monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-none{line-height:1}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.text-amber-100{--tw-text-opacity:1;color:rgb(254 243 199 / var(--tw-text-opacity, 1))}.text-amber-200{--tw-text-opacity:1;color:rgb(253 230 138 / var(--tw-text-opacity, 1))}.text-amber-200\/70{color:rgb(253 230 138 / 0.7)}.text-amber-200\/80{color:rgb(253 230 138 / 0.8)}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.text-amber-300\/70{color:rgb(252 211 77 / 0.7)}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6 / var(--tw-text-opacity, 1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.text-blue-100{--tw-text-opacity:1;color:rgb(219 234 254 / var(--tw-text-opacity, 1))}.text-blue-200{--tw-text-opacity:1;color:rgb(191 219 254 / var(--tw-text-opacity, 1))}.text-blue-200\/70{color:rgb(191 219 254 / 0.7)}.text-blue-200\/80{color:rgb(191 219 254 / 0.8)}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253 / var(--tw-text-opacity, 1))}.text-blue-300\/70{color:rgb(147 197 253 / 0.7)}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity, 1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.text-indigo-200{--tw-text-opacity:1;color:rgb(199 210 254 / var(--tw-text-opacity, 1))}.text-indigo-300{--tw-text-opacity:1;color:rgb(165 180 252 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-rose-300{--tw-text-opacity:1;color:rgb(253 164 175 / var(--tw-text-opacity, 1))}.text-rose-500{--tw-text-opacity:1;color:rgb(244 63 94 / var(--tw-text-opacity, 1))}.text-rose-600{--tw-text-opacity:1;color:rgb(225 29 72 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.placeholder-slate-400::placeholder{--tw-placeholder-opacity:1;color:rgb(148 163 184 / var(--tw-placeholder-opacity, 1))}.accent-emerald-500{accent-color:#10b981}.accent-indigo-500{accent-color:#6366f1}.opacity-0{opacity:0}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-emerald-900\/30{--tw-shadow-color:rgb(6 78 59 / 0.3);--tw-shadow:var(--tw-shadow-colored)}.shadow-emerald-950\/50{--tw-shadow-color:rgb(2 44 34 / 0.5);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.selection\:bg-emerald-500 *::selection{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.selection\:bg-emerald-500::selection{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-amber-400:hover{--tw-bg-opacity:1;background-color:rgb(251 191 36 / var(--tw-bg-opacity, 1))}.hover\:bg-amber-500\/30:hover{background-color:rgb(245 158 11 / 0.3)}.hover\:bg-blue-500\/30:hover{background-color:rgb(59 130 246 / 0.3)}.hover\:bg-emerald-400:hover{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-500\/25:hover{background-color:rgb(16 185 129 / 0.25)}.hover\:bg-purple-400:hover{--tw-bg-opacity:1;background-color:rgb(192 132 252 / var(--tw-bg-opacity, 1))}.hover\:bg-rose-400:hover{--tw-bg-opacity:1;background-color:rgb(251 113 133 / var(--tw-bg-opacity, 1))}.hover\:bg-rose-500\/25:hover{background-color:rgb(244 63 94 / 0.25)}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-300:hover{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}.hover\:text-slate-200:hover{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.hover\:text-slate-900:hover{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:opacity-95:hover{opacity:0.95}.focus\:border-emerald-500:focus{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.dark\:block:is(.dark *){display:block}.dark\:hidden:is(.dark *){display:none}.dark\:border-slate-700:is(.dark *){--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.dark\:border-slate-700\/80:is(.dark *){border-color:rgb(51 65 85 / 0.8)}.dark\:border-slate-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.dark\:border-slate-800\/80:is(.dark *){border-color:rgb(30 41 59 / 0.8)}.dark\:bg-\[\#0b0f19\]:is(.dark *){--tw-bg-opacity:1;background-color:rgb(11 15 25 / var(--tw-bg-opacity, 1))}.dark\:bg-\[\#0f1523\]:is(.dark *){--tw-bg-opacity:1;background-color:rgb(15 21 35 / var(--tw-bg-opacity, 1))}.dark\:bg-\[\#0f1523\]\/95:is(.dark *){background-color:rgb(15 21 35 / 0.95)}.dark\:bg-\[\#111827\]:is(.dark *){--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.dark\:bg-emerald-500:is(.dark *){--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-700:is(.dark *){--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-800:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-800\/70:is(.dark *){background-color:rgb(30 41 59 / 0.7)}.dark\:bg-slate-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-900\/60:is(.dark *){background-color:rgb(15 23 42 / 0.6)}.dark\:bg-slate-900\/90:is(.dark *){background-color:rgb(15 23 42 / 0.9)}.dark\:text-amber-300:is(.dark *){--tw-text-opacity:1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.dark\:text-amber-400:is(.dark *){--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.dark\:text-blue-300:is(.dark *){--tw-text-opacity:1;color:rgb(147 197 253 / var(--tw-text-opacity, 1))}.dark\:text-blue-400:is(.dark *){--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.dark\:text-emerald-400:is(.dark *){--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.dark\:text-purple-400:is(.dark *){--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.dark\:text-rose-400:is(.dark *){--tw-text-opacity:1;color:rgb(251 113 133 / var(--tw-text-opacity, 1))}.dark\:text-slate-100:is(.dark *){--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.dark\:text-slate-200:is(.dark *){--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.dark\:text-slate-300:is(.dark *){--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.dark\:text-slate-400:is(.dark *){--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.dark\:text-slate-950:is(.dark *){--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\:hover\:bg-slate-700:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.dark\:hover\:bg-slate-800:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.dark\:hover\:text-white:hover:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:right-\[calc\(50\%-14rem\)\]{right:calc(50% - 14rem)}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:items-center{align-items:center}.sm\:rounded-3xl{border-radius:1.5rem}.sm\:border{border-width:1px}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}}</style></head>
 <body class="bg-slate-100 text-slate-900 dark:bg-[#0b0f19] dark:text-slate-100 min-h-screen transition-colors duration-200 selection:bg-emerald-500 selection:text-white">
 
   <div class="max-w-lg mx-auto min-h-screen flex flex-col relative pb-28 border-x border-slate-200/70 dark:border-slate-800/80 bg-white dark:bg-[#0f1523] shadow-2xl">
@@ -85,15 +685,13 @@
         </div>
 
         <div class="flex items-center gap-1.5">
-          <button type="button" id="btn-offline-toggle" onclick="toggleOfflineSimulation()" title="Estado de sincronización"
-            class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30">
+          <button type="button" id="btn-offline-toggle" onclick="toggleOfflineSimulation()" title="Estado de sincronización" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition-all bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30">
             <span id="status-dot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span id="status-label">Online</span>
             <span id="sync-queue-badge" class="hidden px-1.5 py-0.2 rounded-full text-[10px] bg-amber-500 text-slate-950 font-bold">0</span>
           </button>
 
-          <button type="button" id="btn-theme-toggle" onclick="toggleTheme()" title="Cambiar modo oscuro o claro"
-            class="p-2 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-100/80 dark:bg-slate-800/70 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+          <button type="button" id="btn-theme-toggle" onclick="toggleTheme()" title="Cambiar modo oscuro o claro" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-100/80 dark:bg-slate-800/70 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
             <svg class="w-4 h-4 hidden dark:block text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -114,16 +712,14 @@
 
       <!-- Barra Selectora de Mes (← Mes Año →) -->
       <div class="mt-2.5 flex items-center justify-between bg-slate-100 dark:bg-slate-900/90 rounded-2xl p-1 border border-slate-200/70 dark:border-slate-800">
-        <button type="button" onclick="changeMonth(-1)"
-          class="flex items-center justify-center w-10 h-9 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800 active:scale-95 transition font-bold text-base">
+        <button type="button" onclick="changeMonth(-1)" class="flex items-center justify-center w-10 h-9 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800 active:scale-95 transition font-bold text-base">
           ←
         </button>
         <div class="text-center flex flex-col items-center">
           <span id="current-month-label" class="font-extrabold text-sm tracking-tight text-slate-900 dark:text-white">Octubre 2026</span>
           <span id="current-month-sub" class="text-[11px] text-slate-500 dark:text-slate-400">USD: $ 1.540,00</span>
         </div>
-        <button type="button" onclick="changeMonth(1)"
-          class="flex items-center justify-center w-10 h-9 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800 active:scale-95 transition font-bold text-base">
+        <button type="button" onclick="changeMonth(1)" class="flex items-center justify-center w-10 h-9 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800 active:scale-95 transition font-bold text-base">
           →
         </button>
       </div>
@@ -193,9 +789,7 @@
 
           <!-- Buscador por palabra -->
           <div class="relative">
-            <input id="tx-search-input" type="search" placeholder="Buscar gasto por palabra (ej. Super, Burger, Vuelo)..."
-              oninput="onSearchQueryChanged(this.value)"
-              class="w-full pl-9 pr-8 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500" />
+            <input id="tx-search-input" type="search" placeholder="Buscar gasto por palabra (ej. Super, Burger, Vuelo)..." oninput="onSearchQueryChanged(this.value)" class="w-full pl-9 pr-8 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500">
             <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -389,35 +983,30 @@
             <div class="grid grid-cols-2 gap-2.5">
               <div>
                 <label for="prof-sueldo" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Sueldo Neto / Base (ARS)</label>
-                <input id="prof-sueldo" type="number" step="1000" required
-                  class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm" />
+                <input id="prof-sueldo" type="number" step="1000" required="" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm">
               </div>
               <div>
                 <label for="prof-balance" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Saldo / Balance Inicial</label>
-                <input id="prof-balance" type="number" step="500" required
-                  class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm" />
+                <input id="prof-balance" type="number" step="500" required="" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm">
               </div>
             </div>
 
             <div class="grid grid-cols-2 gap-2.5">
               <div>
                 <label for="prof-hs-real" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Horas Extras del Mes</label>
-                <input id="prof-hs-real" type="number" step="0.5" required
-                  class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm" />
+                <input id="prof-hs-real" type="number" step="0.5" required="" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm">
                 <span id="prof-hs-calc-hint" class="text-[10px] text-emerald-500 mono-num mt-0.5 block">= $ 0,00</span>
               </div>
               <div>
                 <label for="prof-reintegro" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Ingresos Extra / Reintegros</label>
-                <input id="prof-reintegro" type="number" step="1000" required
-                  class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm" />
+                <input id="prof-reintegro" type="number" step="1000" required="" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm">
               </div>
             </div>
 
             <div class="grid grid-cols-2 gap-2.5 items-end">
               <div>
                 <label for="prof-usd-rate" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Cotización USD del Mes</label>
-                <input id="prof-usd-rate" type="number" step="1" required
-                  class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm" />
+                <input id="prof-usd-rate" type="number" step="1" required="" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm">
               </div>
               <button type="submit" class="py-2.5 px-4 rounded-xl bg-emerald-500 text-slate-950 font-extrabold text-xs hover:bg-emerald-400 transition">
                 Guardar Ingresos
@@ -436,11 +1025,9 @@
           </div>
 
           <form onsubmit="saveCategoryForm(event)" class="flex items-center gap-2">
-            <input type="hidden" id="cat-edit-id" value="" />
-            <input id="cat-icon-input" type="text" maxlength="4" placeholder="🏷️" value="🏷️"
-              class="w-12 text-center py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm" />
-            <input id="cat-name-input" type="text" required placeholder="Nombre de categoría (ej. Mascotas)"
-              class="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold" />
+            <input type="hidden" id="cat-edit-id" value="">
+            <input id="cat-icon-input" type="text" maxlength="4" placeholder="🏷️" value="🏷️" class="w-12 text-center py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm">
+            <input id="cat-name-input" type="text" required="" placeholder="Nombre de categoría (ej. Mascotas)" class="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold">
             <button type="submit" id="cat-submit-btn" class="px-3 py-2 rounded-xl bg-blue-500 text-white font-bold text-xs shrink-0">
               + Agregar
             </button>
@@ -466,14 +1053,16 @@
               ☁️ Nube Supabase
             </button>
           </div>
+          <button type="button" onclick="openGithubModal()" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-xs font-extrabold shadow-md hover:opacity-95 transition flex items-center justify-center gap-2">
+            <span>🚀 Subir esta versión a GitHub (1 clic → Deploy en Vercel)</span>
+          </button>
         </div>
       </section>
 
     </main>
 
     <!-- ==================== BOTÓN FLOTANTE "+" (CARGAR GASTO) ==================== -->
-    <button type="button" id="fab-quick-add" onclick="openQuickAddModal()" aria-label="Cargar gasto rápido"
-      class="fixed bottom-20 right-4 sm:right-[calc(50%-14rem)] z-40 flex items-center gap-2 px-4 h-14 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-extrabold shadow-xl shadow-emerald-950/50 hover:scale-105 active:scale-95 transition-all">
+    <button type="button" id="fab-quick-add" onclick="openQuickAddModal()" aria-label="Cargar gasto rápido" class="fixed bottom-20 right-4 sm:right-[calc(50%-14rem)] z-40 flex items-center gap-2 px-4 h-14 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-extrabold shadow-xl shadow-emerald-950/50 hover:scale-105 active:scale-95 transition-all">
       <svg class="w-6 h-6 stroke-[2.8]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <line x1="12" y1="5" x2="12" y2="19"></line>
         <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -484,8 +1073,7 @@
     <!-- ==================== NAVEGACIÓN INFERIOR (4 SECCIONES: RESUMEN, TARJETAS, FIJOS, PERFIL) ==================== -->
     <nav class="fixed bottom-0 left-0 right-0 z-30 max-w-lg mx-auto bg-white/95 dark:bg-[#0f1523]/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-2 py-1.5">
       <div class="grid grid-cols-4 gap-1">
-        <button type="button" id="nav-resumen" onclick="switchTab('resumen')"
-          class="flex flex-col items-center justify-center py-1.5 rounded-xl text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 font-bold transition">
+        <button type="button" id="nav-resumen" onclick="switchTab('resumen')" class="flex flex-col items-center justify-center py-1.5 rounded-xl text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 font-bold transition">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <rect x="3" y="3" width="7" height="9" rx="1"></rect>
             <rect x="14" y="3" width="7" height="5" rx="1"></rect>
@@ -495,8 +1083,7 @@
           <span class="text-[11px] mt-0.5">Resumen</span>
         </button>
 
-        <button type="button" id="nav-tarjetas" onclick="switchTab('tarjetas')"
-          class="flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium transition">
+        <button type="button" id="nav-tarjetas" onclick="switchTab('tarjetas')" class="flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium transition">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="5" width="20" height="14" rx="2"></rect>
             <line x1="2" y1="10" x2="22" y2="10"></line>
@@ -504,16 +1091,14 @@
           <span class="text-[11px] mt-0.5">Tarjetas</span>
         </button>
 
-        <button type="button" id="nav-fijos" onclick="switchTab('fijos')"
-          class="flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium transition">
+        <button type="button" id="nav-fijos" onclick="switchTab('fijos')" class="flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium transition">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
           </svg>
           <span class="text-[11px] mt-0.5">Fijos</span>
         </button>
 
-        <button type="button" id="nav-perfil" onclick="switchTab('perfil')"
-          class="flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium transition">
+        <button type="button" id="nav-perfil" onclick="switchTab('perfil')" class="flex flex-col items-center justify-center py-1.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium transition">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
@@ -538,8 +1123,8 @@
       </div>
 
       <form id="form-quick-add" onsubmit="saveTransactionForm(event)" class="space-y-3 mt-3">
-        <input type="hidden" id="tx-edit-id" value="" />
-        <input type="hidden" id="tx-edit-cuota-group-id" value="" />
+        <input type="hidden" id="tx-edit-id" value="">
+        <input type="hidden" id="tx-edit-cuota-group-id" value="">
 
         <!-- Monto y Moneda -->
         <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
@@ -553,17 +1138,14 @@
 
           <div class="flex items-baseline gap-2">
             <span id="quick-currency-symbol" class="mono-num text-2xl font-extrabold text-emerald-500">$</span>
-            <input id="tx-amount-input" type="text" inputmode="decimal" placeholder="0" required
-              oninput="onAmountInputChanged()"
-              class="w-full bg-transparent mono-num text-3xl font-extrabold text-slate-900 dark:text-white focus:outline-none" />
+            <input id="tx-amount-input" type="text" inputmode="decimal" placeholder="0" required="" oninput="onAmountInputChanged()" class="w-full bg-transparent mono-num text-3xl font-extrabold text-slate-900 dark:text-white focus:outline-none">
             <button type="button" onclick="clearQuickKeypad()" class="text-xs font-semibold px-2 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Borrar</button>
           </div>
 
           <div id="usd-conversion-row" class="hidden mt-2 pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
             <div class="flex items-center gap-1.5">
               <span class="text-slate-500">Cotización USD:</span>
-              <input id="tx-usd-rate" type="number" step="1" value="1540" oninput="onAmountInputChanged()"
-                class="w-20 px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 mono-num font-bold" />
+              <input id="tx-usd-rate" type="number" step="1" value="1540" oninput="onAmountInputChanged()" class="w-20 px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 mono-num font-bold">
             </div>
             <div class="font-bold text-emerald-500 mono-num" id="tx-usd-ars-preview">= $ 0,00 ARS</div>
           </div>
@@ -591,16 +1173,13 @@
           <div>
             <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">2. Medio de Pago</label>
             <div class="grid grid-cols-3 gap-2">
-              <button type="button" id="pm-btn-efectivo" onclick="selectPaymentMethod('efectivo')"
-                class="py-2.5 px-3 rounded-xl border font-bold text-xs transition">
+              <button type="button" id="pm-btn-efectivo" onclick="selectPaymentMethod('efectivo')" class="py-2.5 px-3 rounded-xl border font-bold text-xs transition">
                 🏧 Débito
               </button>
-              <button type="button" id="pm-btn-visa" onclick="selectPaymentMethod('visa')"
-                class="py-2.5 px-3 rounded-xl border font-bold text-xs transition">
+              <button type="button" id="pm-btn-visa" onclick="selectPaymentMethod('visa')" class="py-2.5 px-3 rounded-xl border font-bold text-xs transition">
                 💳 Visa Crédito
               </button>
-              <button type="button" id="pm-btn-master" onclick="selectPaymentMethod('master')"
-                class="py-2.5 px-3 rounded-xl border font-bold text-xs transition">
+              <button type="button" id="pm-btn-master" onclick="selectPaymentMethod('master')" class="py-2.5 px-3 rounded-xl border font-bold text-xs transition">
                 💳 Master Crédito
               </button>
             </div>
@@ -608,8 +1187,7 @@
 
           <div>
             <label for="tx-desc-input" class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Descripción</label>
-            <input id="tx-desc-input" type="text" placeholder="Ej: Supermercado, Cena, Farmacia..." required
-              class="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-semibold focus:outline-none focus:border-emerald-500" />
+            <input id="tx-desc-input" type="text" placeholder="Ej: Supermercado, Cena, Farmacia..." required="" class="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-semibold focus:outline-none focus:border-emerald-500">
           </div>
 
           <div class="grid grid-cols-2 gap-2">
@@ -619,8 +1197,7 @@
             </div>
             <div>
               <label for="tx-date-input" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Fecha (dd/mm/aaaa)</label>
-              <input id="tx-date-input" type="text" placeholder="20/10/2026" oninput="onTxDateInput(this)"
-                class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs mono-num font-semibold" />
+              <input id="tx-date-input" type="text" placeholder="20/10/2026" oninput="onTxDateInput(this)" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs mono-num font-semibold">
             </div>
           </div>
 
@@ -636,20 +1213,18 @@
                 <span class="text-xs font-bold text-slate-800 dark:text-slate-200">¿Es en cuotas con tarjeta?</span>
                 <p class="text-[10px] text-slate-500">Avanza automáticamente en cada ciclo mensual</p>
               </div>
-              <input id="tx-is-cuota" type="checkbox" onchange="toggleCuotaFields()" class="w-5 h-5 accent-emerald-500 rounded" />
+              <input id="tx-is-cuota" type="checkbox" onchange="toggleCuotaFields()" class="w-5 h-5 accent-emerald-500 rounded">
             </div>
 
             <div id="cuota-fields-box" class="hidden mt-3 pt-2.5 border-t border-slate-200 dark:border-slate-800 space-y-2">
               <div class="grid grid-cols-2 gap-2">
                 <div>
                   <label for="tx-cuota-actual" class="block text-[10px] font-bold uppercase text-slate-500">Cuota inicial</label>
-                  <input id="tx-cuota-actual" type="number" min="1" max="60" value="1" oninput="updateCuotaPreviewText()"
-                    class="mt-1 w-full px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 mono-num text-xs font-bold" />
+                  <input id="tx-cuota-actual" type="number" min="1" max="60" value="1" oninput="updateCuotaPreviewText()" class="mt-1 w-full px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 mono-num text-xs font-bold">
                 </div>
                 <div>
                   <label for="tx-cuota-total" class="block text-[10px] font-bold uppercase text-slate-500">Total de cuotas</label>
-                  <input id="tx-cuota-total" type="number" min="2" max="60" value="6" oninput="updateCuotaPreviewText()"
-                    class="mt-1 w-full px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 mono-num text-xs font-bold" />
+                  <input id="tx-cuota-total" type="number" min="2" max="60" value="6" oninput="updateCuotaPreviewText()" class="mt-1 w-full px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 mono-num text-xs font-bold">
                 </div>
               </div>
               <p id="cuota-preview-Info" class="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium"></p>
@@ -688,13 +1263,11 @@
           <div class="grid grid-cols-2 gap-2.5">
             <div>
               <label for="close-visa-date" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Fecha de Cierre (dd/mm/aaaa)</label>
-              <input id="close-visa-date" type="text" required placeholder="24/10/2026"
-                class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold" />
+              <input id="close-visa-date" type="text" required="" placeholder="24/10/2026" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold">
             </div>
             <div>
               <label for="due-visa-date" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Fecha Vencimiento / Pago</label>
-              <input id="due-visa-date" type="text" required placeholder="06/11/2026"
-                class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold" />
+              <input id="due-visa-date" type="text" required="" placeholder="06/11/2026" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold">
             </div>
           </div>
         </div>
@@ -704,13 +1277,11 @@
           <div class="grid grid-cols-2 gap-2.5">
             <div>
               <label for="close-master-date" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Fecha de Cierre (dd/mm/aaaa)</label>
-              <input id="close-master-date" type="text" required placeholder="22/10/2026"
-                class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold" />
+              <input id="close-master-date" type="text" required="" placeholder="22/10/2026" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold">
             </div>
             <div>
               <label for="due-master-date" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Fecha Vencimiento / Pago</label>
-              <input id="due-master-date" type="text" required placeholder="04/11/2026"
-                class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold" />
+              <input id="due-master-date" type="text" required="" placeholder="04/11/2026" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold">
             </div>
           </div>
         </div>
@@ -721,14 +1292,14 @@
             ¿Por qué estás cambiando la fecha de cierre?
           </div>
           <label class="flex items-start gap-2.5 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer">
-            <input type="radio" name="cycle_change_mode" id="cycle-mode-keep" value="keep" checked class="mt-0.5 accent-emerald-500" />
+            <input type="radio" name="cycle_change_mode" id="cycle-mode-keep" value="keep" checked="" class="mt-0.5 accent-emerald-500">
             <div>
               <div class="font-bold text-slate-900 dark:text-white">Únicamente modifiqué la fecha (continúa el ciclo actual)</div>
               <div class="text-[11px] text-slate-500">El ciclo actual sigue abierto y vigente hasta la nueva fecha de cierre que pusiste arriba.</div>
             </div>
           </label>
           <label class="flex items-start gap-2.5 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer">
-            <input type="radio" name="cycle_change_mode" id="cycle-mode-new" value="new_cycle" class="mt-0.5 accent-emerald-500" />
+            <input type="radio" name="cycle_change_mode" id="cycle-mode-new" value="new_cycle" class="mt-0.5 accent-emerald-500">
             <div>
               <div class="font-bold text-emerald-600 dark:text-emerald-400">Ya cerró la tarjeta: iniciar un nuevo ciclo</div>
               <div class="text-[11px] text-slate-500">Cierra el ciclo actual (enviando su total al mes de vencimiento para pagar) y arranca el nuevo ciclo con las nuevas fechas.</div>
@@ -757,17 +1328,15 @@
       </div>
 
       <form onsubmit="saveRecurringForm(event)" class="space-y-3 mt-3 text-xs">
-        <input type="hidden" id="rec-edit-id" value="" />
+        <input type="hidden" id="rec-edit-id" value="">
         <div>
           <label for="rec-desc" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Descripción (ej. Cochera, Inglés, Alquiler, Luz)</label>
-          <input id="rec-desc" type="text" required placeholder="Ej: Cochera"
-            class="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold text-sm" />
+          <input id="rec-desc" type="text" required="" placeholder="Ej: Cochera" class="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold text-sm">
         </div>
         <div class="grid grid-cols-2 gap-2.5">
           <div>
             <label for="rec-amount" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Monto Mensual (ARS)</label>
-            <input id="rec-amount" type="number" step="500" required placeholder="52000"
-              class="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm" />
+            <input id="rec-amount" type="number" step="500" required="" placeholder="52000" class="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm">
           </div>
           <div>
             <label for="rec-scope" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Dónde se cobra</label>
@@ -804,22 +1373,19 @@
       </div>
 
       <form onsubmit="saveDebtForm(event)" class="space-y-3 mt-3 text-xs">
-        <input type="hidden" id="debt-edit-id" value="" />
+        <input type="hidden" id="debt-edit-id" value="">
         <div>
           <label for="debt-name" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Nombre de la Deuda</label>
-          <input id="debt-name" type="text" required placeholder="Ej: Préstamo Personal"
-            class="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold text-sm" />
+          <input id="debt-name" type="text" required="" placeholder="Ej: Préstamo Personal" class="w-full px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold text-sm">
         </div>
         <div class="grid grid-cols-3 gap-2">
           <div>
             <label for="debt-cuota" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Cuota Mensual</label>
-            <input id="debt-cuota" type="number" step="1000" required placeholder="278000"
-              class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm" />
+            <input id="debt-cuota" type="number" step="1000" required="" placeholder="278000" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm">
           </div>
           <div>
             <label for="debt-saldo" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Saldo Total</label>
-            <input id="debt-saldo" type="number" step="1000" required placeholder="834000"
-              class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm" />
+            <input id="debt-saldo" type="number" step="1000" required="" placeholder="834000" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 mono-num font-bold text-sm">
           </div>
           <div>
             <label for="debt-tipo" class="block font-bold text-slate-500 uppercase text-[10px] mb-1">Tipo</label>
@@ -857,33 +1423,26 @@
       <div class="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 space-y-2.5 text-xs">
         <div>
           <label for="sb-url-input" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Supabase Project URL</label>
-          <input id="sb-url-input" type="url" placeholder="https://tu-proyecto.supabase.co"
-            class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs" />
+          <input id="sb-url-input" type="url" placeholder="https://tu-proyecto.supabase.co" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs">
         </div>
         <div>
           <label for="sb-key-input" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Publishable Key / Anon Key</label>
-          <input id="sb-key-input" type="password" placeholder="sb_publishable_... o eyJhbGci..."
-            class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs" />
+          <input id="sb-key-input" type="password" placeholder="sb_publishable_... o eyJhbGci..." class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs">
         </div>
         <div class="grid grid-cols-3 gap-2 pt-1">
-          <input id="sb-email-input" type="email" placeholder="tu@email.com"
-            class="col-span-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs" />
-          <button type="button" onclick="connectAndSendMagicLink()"
-            class="px-3 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400 transition">
+          <input id="sb-email-input" type="email" placeholder="tu@email.com" class="col-span-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+          <button type="button" onclick="connectAndSendMagicLink()" class="px-3 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs hover:bg-emerald-400 transition">
             Enviar Link
           </button>
         </div>
         <div class="grid grid-cols-3 gap-2 pt-1">
-          <button type="button" onclick="pushFullStateToSupabase(true)"
-            class="py-2 px-2.5 rounded-xl bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30 font-bold text-[11px]">
+          <button type="button" onclick="pushFullStateToSupabase(true)" class="py-2 px-2.5 rounded-xl bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/30 font-bold text-[11px]">
             ☁️ Subir a Nube
           </button>
-          <button type="button" onclick="pullFromSupabaseCloud(true)"
-            class="py-2 px-2.5 rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30 font-bold text-[11px]">
+          <button type="button" onclick="pullFromSupabaseCloud(true)" class="py-2 px-2.5 rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-500/30 font-bold text-[11px]">
             📥 Traer de Nube
           </button>
-          <button type="button" onclick="signOutSupabase()"
-            class="py-2 px-2.5 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30 font-bold text-[11px]">
+          <button type="button" onclick="signOutSupabase()" class="py-2 px-2.5 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30 font-bold text-[11px]">
             Cerrar Sesión
           </button>
         </div>
@@ -899,9 +1458,59 @@
             Copiar SQL
           </button>
         </div>
-        <textarea id="sql-migration-viewer" readonly rows="5"
-          class="w-full p-2.5 rounded-xl bg-slate-950 text-emerald-300 font-mono text-[10px] border border-slate-800 focus:outline-none"></textarea>
+        <textarea id="sql-migration-viewer" readonly="" rows="5" class="w-full p-2.5 rounded-xl bg-slate-950 text-emerald-300 font-mono text-[10px] border border-slate-800 focus:outline-none"></textarea>
       </div>
+    </div>
+  </div>
+
+  <!-- ============================================================================ -->
+  <!-- MODAL 6: PUBLICAR DIRECTO EN GITHUB CON 1 CLIC (REST API DESDE EL NAVEGADOR) -->
+  <!-- ============================================================================ -->
+  <div id="modal-github" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-end sm:items-center justify-center">
+    <div class="sheet-animate w-full max-w-lg bg-white dark:bg-[#111827] rounded-t-3xl sm:rounded-3xl border-t sm:border border-slate-200 dark:border-slate-800 p-4 max-h-[92vh] overflow-y-auto space-y-3.5">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <h3 class="text-base font-extrabold text-slate-900 dark:text-white">🚀 Subir directo a GitHub (1 clic)</h3>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400">Actualiza tu repositorio sin descargar ni subir archivos a mano</p>
+        </div>
+        <button type="button" onclick="closeGithubModal()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500">✕</button>
+      </div>
+
+      <form onsubmit="pushAppToGithubNow(event)" class="space-y-3 text-xs">
+        <div class="p-3.5 rounded-2xl border border-indigo-500/30 bg-indigo-500/5 space-y-2.5">
+          <div class="grid grid-cols-3 gap-2">
+            <div class="col-span-2">
+              <label for="gh-repo-input" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Repositorio (usuario/nombre-repo)</label>
+              <input id="gh-repo-input" type="text" required="" placeholder="ej: tuusuario/mangoar" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs font-bold">
+            </div>
+            <div>
+              <label for="gh-branch-input" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Rama</label>
+              <input id="gh-branch-input" type="text" required="" value="main" placeholder="main" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs font-bold">
+            </div>
+          </div>
+
+          <div>
+            <label for="gh-token-input" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">GitHub Personal Access Token (con permiso Contents: Read &amp; Write)</label>
+            <input id="gh-token-input" type="password" required="" placeholder="ghp_... o github_pat_..." class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs">
+          </div>
+
+          <div>
+            <label for="gh-commit-msg" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Mensaje del Commit</label>
+            <input id="gh-commit-msg" type="text" value="Actualización de MangoAR desde Canvas" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+          </div>
+
+          <label class="flex items-center gap-2 pt-1 cursor-pointer">
+            <input id="gh-include-all-files" type="checkbox" checked="" class="w-4 h-4 accent-indigo-500 rounded">
+            <span class="text-[11px] text-slate-600 dark:text-slate-300">Subir también <code>manifest.json</code>, <code>sw.js</code>, <code>vercel.json</code> e íconos PWA</span>
+          </label>
+        </div>
+
+        <div id="gh-push-status" class="hidden p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[11px] font-mono space-y-1"></div>
+
+        <button type="submit" id="gh-submit-btn" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-extrabold text-sm shadow-lg">
+          🚀 Subir archivos a GitHub ahora
+        </button>
+      </form>
     </div>
   </div>
 
@@ -2927,6 +3536,123 @@
     }
 
     const SQL_MIGRATION_TEXT = "-- ============================================================================\n-- MIGRACI\u00d3N COMPLETA SUPABASE \u2014 MANGOAR (MIS GASTOS PERSONALES MENSUALES)\n-- Motor: PostgreSQL + Row Level Security (RLS) estricto por user_id\n-- ============================================================================\n\ncreate extension if not exists \"pgcrypto\";\n\n-- 1. PERFILES / CONFIGURACI\u00d3N DEL USUARIO (profiles)\ncreate table if not exists public.profiles (\n  user_id uuid primary key references auth.users(id) on delete cascade,\n  email text,\n  sueldo_base numeric(14,2) not null default 2700000.00,\n  divisor_horas integer not null default 200,\n  recargo_hs_extra numeric(5,2) not null default 1.50,\n  cotizacion_usd_default numeric(12,2) not null default 1540.00,\n  tema_oscuro boolean not null default true,\n  app_state_json jsonb,\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now()\n);\n\n-- 2. MESES (months) \u2014 Ingresos y fechas de cierre/vencimiento de tarjetas por mes\ncreate table if not exists public.months (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  anio integer not null check (anio >= 2020 and anio <= 2100),\n  mes integer not null check (mes >= 1 and mes <= 12),\n  balance_inicial numeric(14,2) not null default 0.00,\n  sueldo_mes numeric(14,2) not null default 2700000.00,\n  horas_extras_real numeric(6,2) not null default 0.00,\n  reintegro_real numeric(14,2) not null default 0.00,\n  ingreso_extra_real numeric(14,2) not null default 0.00,\n  cotizacion_usd numeric(12,2) not null default 1540.00,\n  cierre_visa date,\n  vencimiento_visa date,\n  cierre_master date,\n  vencimiento_master date,\n  notas text,\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now(),\n  unique (user_id, anio, mes)\n);\n\n-- 3. MEDIOS DE PAGO (payment_methods)\ncreate table if not exists public.payment_methods (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  codigo text not null,\n  nombre text not null,\n  es_tarjeta boolean not null default true,\n  color text not null default '#3b82f6',\n  orden integer not null default 1,\n  activo boolean not null default true,\n  created_at timestamptz not null default now()\n);\n\n-- 4. CATEGOR\u00cdAS (categories)\ncreate table if not exists public.categories (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  nombre text not null,\n  color text not null default '#10b981',\n  icono text not null default '\ud83d\udce6',\n  presupuesto_mensual numeric(14,2),\n  created_at timestamptz not null default now()\n);\n\n-- 5. PLANTILLAS DE GASTOS FIJOS RECURRENTES (recurring)\ncreate table if not exists public.recurring (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  descripcion text not null,\n  monto_ars numeric(14,2) not null default 0.00,\n  monto_usd numeric(12,2),\n  payment_method_id uuid references public.payment_methods(id) on delete set null,\n  category_id uuid references public.categories(id) on delete set null,\n  ubicacion text not null default 'fijos' check (ubicacion in ('fijos', 'tarjeta_visa', 'tarjeta_master')),\n  desde_anio integer not null default 2026,\n  desde_mes integer not null default 1,\n  hasta_anio integer,\n  hasta_mes integer,\n  activo boolean not null default true,\n  client_sync_id text unique,\n  created_at timestamptz not null default now()\n);\n\n-- 6. DEUDAS EXTERNAS Y PR\u00c9STAMOS (debts)\ncreate table if not exists public.debts (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  nombre text not null,\n  saldo_total numeric(14,2) not null default 0.00,\n  cuota_mensual numeric(14,2) not null default 0.00,\n  tipo text not null check (tipo in ('externa', 'prestamo')),\n  activo boolean not null default true,\n  client_sync_id text unique,\n  created_at timestamptz not null default now()\n);\n\n-- 7. MOVIMIENTOS Y CONSUMOS (transactions)\ncreate table if not exists public.transactions (\n  id uuid primary key default gen_random_uuid(),\n  user_id uuid not null references auth.users(id) on delete cascade,\n  month_id uuid references public.months(id) on delete cascade,\n  anio integer not null,\n  mes integer not null,\n  fecha date not null default current_date,\n  descripcion text not null,\n  monto_ars numeric(14,2) not null default 0.00,\n  monto_usd numeric(12,2),\n  cotizacion numeric(12,2),\n  payment_method_id uuid references public.payment_methods(id) on delete set null,\n  medio_codigo text not null default 'visa',\n  category_id uuid references public.categories(id) on delete set null,\n  categoria_nombre text not null default 'General',\n  tipo text not null default 'consumo' check (tipo in ('consumo', 'fijo', 'deuda')),\n  cuota_actual integer,\n  cuota_total integer,\n  grupo_cuota_id uuid,\n  recurrente_id uuid references public.recurring(id) on delete set null,\n  client_sync_id text unique,\n  created_at timestamptz not null default now(),\n  updated_at timestamptz not null default now()\n);\n\ncreate index if not exists idx_months_user_ym on public.months(user_id, anio, mes);\ncreate index if not exists idx_tx_user_ym on public.transactions(user_id, anio, mes);\ncreate index if not exists idx_tx_grupo_cuota on public.transactions(grupo_cuota_id);\ncreate index if not exists idx_recurring_user on public.recurring(user_id, activo);\ncreate index if not exists idx_debts_user on public.debts(user_id, activo);\n\nalter table public.profiles enable row level security;\nalter table public.months enable row level security;\nalter table public.payment_methods enable row level security;\nalter table public.categories enable row level security;\nalter table public.recurring enable row level security;\nalter table public.debts enable row level security;\nalter table public.transactions enable row level security;\n\ncreate policy \"profiles_select_own\" on public.profiles for select using (auth.uid() = user_id);\ncreate policy \"profiles_insert_own\" on public.profiles for insert with check (auth.uid() = user_id);\ncreate policy \"profiles_update_own\" on public.profiles for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"profiles_delete_own\" on public.profiles for delete using (auth.uid() = user_id);\n\ncreate policy \"months_select_own\" on public.months for select using (auth.uid() = user_id);\ncreate policy \"months_insert_own\" on public.months for insert with check (auth.uid() = user_id);\ncreate policy \"months_update_own\" on public.months for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"months_delete_own\" on public.months for delete using (auth.uid() = user_id);\n\ncreate policy \"payment_methods_select_own\" on public.payment_methods for select using (auth.uid() = user_id);\ncreate policy \"payment_methods_insert_own\" on public.payment_methods for insert with check (auth.uid() = user_id);\ncreate policy \"payment_methods_update_own\" on public.payment_methods for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"payment_methods_delete_own\" on public.payment_methods for delete using (auth.uid() = user_id);\n\ncreate policy \"categories_select_own\" on public.categories for select using (auth.uid() = user_id);\ncreate policy \"categories_insert_own\" on public.categories for insert with check (auth.uid() = user_id);\ncreate policy \"categories_update_own\" on public.categories for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"categories_delete_own\" on public.categories for delete using (auth.uid() = user_id);\n\ncreate policy \"recurring_select_own\" on public.recurring for select using (auth.uid() = user_id);\ncreate policy \"recurring_insert_own\" on public.recurring for insert with check (auth.uid() = user_id);\ncreate policy \"recurring_update_own\" on public.recurring for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"recurring_delete_own\" on public.recurring for delete using (auth.uid() = user_id);\n\ncreate policy \"debts_select_own\" on public.debts for select using (auth.uid() = user_id);\ncreate policy \"debts_insert_own\" on public.debts for insert with check (auth.uid() = user_id);\ncreate policy \"debts_update_own\" on public.debts for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"debts_delete_own\" on public.debts for delete using (auth.uid() = user_id);\n\ncreate policy \"transactions_select_own\" on public.transactions for select using (auth.uid() = user_id);\ncreate policy \"transactions_insert_own\" on public.transactions for insert with check (auth.uid() = user_id);\ncreate policy \"transactions_update_own\" on public.transactions for update using (auth.uid() = user_id) with check (auth.uid() = user_id);\ncreate policy \"transactions_delete_own\" on public.transactions for delete using (auth.uid() = user_id);\n";
+    const MANIFEST_JSON_TEXT = "{\n  \"name\": \"MangoAR \u2014 Mis Gastos Mensuales\",\n  \"short_name\": \"MangoAR\",\n  \"description\": \"Control de gastos personales mensuales en ARS y USD con ciclos de tarjeta, cuotas y gastos fijos.\",\n  \"start_url\": \"/index.html\",\n  \"scope\": \"/\",\n  \"display\": \"standalone\",\n  \"orientation\": \"portrait\",\n  \"background_color\": \"#0b0f19\",\n  \"theme_color\": \"#10b981\",\n  \"lang\": \"es-AR\",\n  \"icons\": [\n    {\n      \"src\": \"icon-192.svg\",\n      \"sizes\": \"192x192\",\n      \"type\": \"image/svg+xml\",\n      \"purpose\": \"any maskable\"\n    },\n    {\n      \"src\": \"icon-512.svg\",\n      \"sizes\": \"512x512\",\n      \"type\": \"image/svg+xml\",\n      \"purpose\": \"any maskable\"\n    }\n  ]\n}\n";
+    const SW_JS_TEXT = "const CACHE_NAME = 'mangoar-pwa-v3';\nconst ASSETS = [\n  '/',\n  '/index.html',\n  '/manifest.json',\n  '/icon-192.svg',\n  '/icon-512.svg'\n];\n\nself.addEventListener('install', (event) => {\n  event.waitUntil(\n    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())\n  );\n});\n\nself.addEventListener('activate', (event) => {\n  event.waitUntil(\n    caches.keys().then((keys) =>\n      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))\n    ).then(() => self.clients.claim())\n  );\n});\n\nself.addEventListener('fetch', (event) => {\n  if (event.request.method !== 'GET') return;\n  event.respondWith(\n    caches.match(event.request).then((cached) => {\n      const fetchPromise = fetch(event.request)\n        .then((networkRes) => {\n          if (networkRes && networkRes.status === 200 && event.request.url.startsWith(self.location.origin)) {\n            const copy = networkRes.clone();\n            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));\n          }\n          return networkRes;\n        })\n        .catch(() => cached);\n      return cached || fetchPromise;\n    })\n  );\n});\n";
+    const VERCEL_JSON_TEXT = "{\n  \"version\": 2,\n  \"cleanUrls\": true,\n  \"headers\": [\n    {\n      \"source\": \"/sw.js\",\n      \"headers\": [\n        { \"key\": \"Cache-Control\", \"value\": \"public, max-age=0, must-revalidate\" },\n        { \"key\": \"Service-Worker-Allowed\", \"value\": \"/\" }\n      ]\n    },\n    {\n      \"source\": \"/manifest.json\",\n      \"headers\": [\n        { \"key\": \"Content-Type\", \"value\": \"application/manifest+json\" }\n      ]\n    }\n  ]\n}\n";
+    const ICON_SVG_TEXT = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"512\" height=\"512\">\n  <defs>\n    <linearGradient id=\"bg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#10b981\"/>\n      <stop offset=\"100%\" stop-color=\"#047857\"/>\n    </linearGradient>\n  </defs>\n  <rect width=\"512\" height=\"512\" rx=\"112\" fill=\"url(#bg)\"/>\n  <path d=\"M256 96v320M336 160H208a56 56 0 0 0 0 112h96a56 56 0 0 1 0 112H160\"\n        fill=\"none\" stroke=\"#ffffff\" stroke-width=\"44\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n";
+    let CLEAN_INITIAL_HTML = '';
+
+    function openGithubModal() {
+      const cfg = safeGetStorage('mangoar_gh_cfg', null);
+      if (cfg) {
+        if (cfg.repo) document.getElementById('gh-repo-input').value = cfg.repo;
+        if (cfg.branch) document.getElementById('gh-branch-input').value = cfg.branch;
+        if (cfg.token) document.getElementById('gh-token-input').value = cfg.token;
+      }
+      document.getElementById('modal-github').classList.remove('hidden');
+    }
+
+    function closeGithubModal() {
+      document.getElementById('modal-github').classList.add('hidden');
+    }
+
+    function utf8ToBase64(str) {
+      return window.btoa(unescape(encodeURIComponent(str)));
+    }
+
+    async function upsertSingleFileToGithub(repo, branch, token, filePath, contentStr, commitMsg) {
+      const apiUrl = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      };
+      let existingSha = null;
+      const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}?ref=${encodeURIComponent(branch)}`, { headers });
+      if (getRes.status === 200) {
+        const data = await getRes.json();
+        existingSha = data.sha;
+      }
+      const bodyObj = {
+        message: commitMsg,
+        content: utf8ToBase64(contentStr),
+        branch: branch
+      };
+      if (existingSha) bodyObj.sha = existingSha;
+
+      const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}`, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify(bodyObj)
+      });
+      if (!putRes.ok) {
+        const errData = await putRes.json().catch(() => ({}));
+        throw new Error(errData.message || `HTTP ${putRes.status} en ${filePath}`);
+      }
+      return await putRes.json();
+    }
+
+    async function pushAppToGithubNow(e) {
+      e.preventDefault();
+      let repo = document.getElementById('gh-repo-input').value.trim();
+      repo = repo.replace(/^https?:\/\/github\.com\//i, '').replace(/\.git$/i, '').replace(/\/+$/, '');
+      const branch = document.getElementById('gh-branch-input').value.trim() || 'main';
+      const token = document.getElementById('gh-token-input').value.trim();
+      const commitMsg = document.getElementById('gh-commit-msg').value.trim() || 'Actualización MangoAR';
+      const includeAll = document.getElementById('gh-include-all-files').checked;
+      const statusBox = document.getElementById('gh-push-status');
+      const submitBtn = document.getElementById('gh-submit-btn');
+
+      if (!repo.includes('/')) {
+        showToast('El repositorio debe tener formato usuario/nombre-repo');
+        return;
+      }
+      safeSetStorage('mangoar_gh_cfg', { repo, branch, token });
+
+      statusBox.classList.remove('hidden');
+      statusBox.innerHTML = `<div class="text-indigo-400">⏳ Conectando con GitHub (${repo})...</div>`;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Subiendo a GitHub...';
+
+      try {
+        let indexHtml = CLEAN_INITIAL_HTML || ('<!DOCTYPE html>\n' + document.documentElement.outerHTML);
+        if (!indexHtml.includes('href="manifest.json"')) {
+          indexHtml = indexHtml.replace(
+            '<title>MangoAR — Mis Gastos Mensuales</title>',
+            '<title>MangoAR — Mis Gastos Mensuales</title>\n  <link rel="manifest" href="manifest.json" />\n  <link rel="icon" type="image/svg+xml" href="icon-192.svg" />'
+          );
+        }
+
+        const filesToUpload = [
+          { path: 'index.html', content: indexHtml }
+        ];
+        if (includeAll) {
+          filesToUpload.push(
+            { path: 'manifest.json', content: MANIFEST_JSON_TEXT },
+            { path: 'sw.js', content: SW_JS_TEXT },
+            { path: 'vercel.json', content: VERCEL_JSON_TEXT },
+            { path: 'supabase_migrations.sql', content: SQL_MIGRATION_TEXT },
+            { path: 'icon-192.svg', content: ICON_SVG_TEXT },
+            { path: 'icon-512.svg', content: ICON_SVG_TEXT }
+          );
+        }
+
+        for (let i = 0; i < filesToUpload.length; i++) {
+          const f = filesToUpload[i];
+          statusBox.innerHTML = `<div class="text-indigo-400">⏳ Subiendo ${f.path} (${i + 1}/${filesToUpload.length})...</div>`;
+          await upsertSingleFileToGithub(repo, branch, token, f.path, f.content, commitMsg);
+        }
+
+        statusBox.innerHTML = `<div class="text-emerald-400 font-bold">✅ ¡Listo! Se actualizaron ${filesToUpload.length} archivo(s) en ${repo} (${branch}). Vercel ya está desplegando los cambios.</div>`;
+        showToast('🚀 ¡Subido a GitHub con éxito!');
+      } catch (err) {
+        statusBox.innerHTML = `<div class="text-rose-400 font-bold">❌ Error: ${err.message}. Verificá el nombre usuario/repo y que el Token tenga permiso "Contents: Read and Write".</div>`;
+        showToast('Error al subir a GitHub');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🚀 Subir archivos a GitHub ahora';
+      }
+    }
 
     function setupDynamicPWA() {
       try {
@@ -2948,6 +3674,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      CLEAN_INITIAL_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
       const savedDark = safeGetStorage('mangoar_theme_dark', true);
       if (!savedDark) document.documentElement.classList.remove('dark');
       const sqlViewer = document.getElementById('sql-migration-viewer');
@@ -2958,5 +3685,5 @@
       initSavedSupabaseClient();
     });
   </script>
-</body>
-</html>
+
+</body></html>
