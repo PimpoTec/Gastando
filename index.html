@@ -19,7 +19,7 @@
   <!-- Tailwind CSS v3.4.17 -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <!-- Cliente oficial de Supabase JS v2 (con fallback local si no hay internet) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -197,9 +197,14 @@
               <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
               RESULTADO DEL MES (PLATA QUE TE QUEDA)
             </span>
-            <button type="button" onclick="openIncomeModal()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 transition">
-              Editar Ingresos
-            </button>
+            <div class="flex items-center gap-1.5">
+              <button type="button" onclick="clearAllUserData()" title="Borrar todos los datos de prueba y empezar en $ 0" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 border border-rose-500/30 transition">
+                🗑️ Vaciar todo
+              </button>
+              <button type="button" onclick="openIncomeModal()" class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 transition">
+                Editar Ingresos
+              </button>
+            </div>
           </div>
 
           <!-- Número gigante protagonista -->
@@ -553,7 +558,11 @@
         <div class="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 space-y-3">
           <div class="flex items-center justify-between">
             <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Ajustar Estimados del Mes Proyectado</h3>
-            <button type="button" onclick="resetSeedData()" class="text-[11px] text-slate-500 hover:text-emerald-500 underline">Volver a valores Excel</button>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="clearAllUserData()" class="text-[11px] text-rose-500 hover:underline font-semibold">Vaciar a $ 0</button>
+              <span class="text-slate-400">·</span>
+              <button type="button" onclick="resetSeedData()" class="text-[11px] text-slate-500 hover:text-emerald-500 underline">Volver a valores Excel</button>
+            </div>
           </div>
 
           <div class="grid grid-cols-3 gap-2">
@@ -1103,8 +1112,8 @@
             class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs" />
         </div>
         <div>
-          <label for="sb-key-input" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Supabase Anon Public Key</label>
-          <input id="sb-key-input" type="password" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..."
+          <label for="sb-key-input" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Publishable Key (o Legacy Anon Key)</label>
+          <input id="sb-key-input" type="password" placeholder="sb_publishable_... o eyJhbGci..."
             class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-xs" />
         </div>
         <div class="grid grid-cols-3 gap-2 pt-1">
@@ -1147,11 +1156,14 @@
       </div>
 
       <!-- Acciones de Mantenimiento -->
-      <div class="flex items-center justify-between gap-2 pt-1">
-        <button type="button" onclick="resetSeedData()" class="flex-1 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800">
+      <div class="grid grid-cols-3 gap-2 pt-1">
+        <button type="button" onclick="clearAllUserData()" class="py-2.5 px-2 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30 text-xs font-bold hover:bg-rose-500/25 transition">
+          🗑️ Vaciar todo ($ 0)
+        </button>
+        <button type="button" onclick="resetSeedData()" class="py-2.5 px-2 rounded-xl border border-slate-300 dark:border-slate-700 text-[11px] font-bold hover:bg-slate-100 dark:hover:bg-slate-800">
           Restaurar Seed del Excel
         </button>
-        <button type="button" onclick="closeSettingsModal()" class="flex-1 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold">
+        <button type="button" onclick="closeSettingsModal()" class="py-2.5 px-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold">
           Listo
         </button>
       </div>
@@ -1622,18 +1634,19 @@
       const store = getUserStore();
       const key = `${anio}-${String(mes).padStart(2, '0')}`;
       if (!store.months[key]) {
-        const defaultSueldo = store.profile.sueldo_base || 2700000;
+        const defaultSueldo = store.profile.sueldo_base !== undefined ? store.profile.sueldo_base : 2700000;
         const defaultUsd = store.profile.cotizacion_usd_default || 1540;
+        const isBlankStore = defaultSueldo === 0 && (store.recurring || []).length === 0;
         store.months[key] = {
           anio: anio,
           mes: mes,
           sueldo_mes: defaultSueldo,
           balance_inicial: 0,
           horas_extras_real: 0,
-          horas_extras_proy: 15,
+          horas_extras_proy: isBlankStore ? 0 : 15,
           reintegro_real: 0,
           ingreso_extra_proy: 0,
-          combustible_proyectado: 250000,
+          combustible_proyectado: isBlankStore ? 0 : 250000,
           cotizacion_usd: defaultUsd,
           cierre_visa: `24/${String(mes).padStart(2, '0')}/${anio}`,
           vencimiento_visa: `06/${String(mes === 12 ? 1 : mes + 1).padStart(2, '0')}/${mes === 12 ? anio + 1 : anio}`,
@@ -3660,14 +3673,80 @@
       }
     }
 
+    function buildEmptyStoreForUser(userId) {
+      const mKey = `${currentYear}-${String(currentMonth).padStart(2, '0')}`;
+      const nextM = currentMonth === 12 ? 1 : currentMonth + 1;
+      const nextY = currentMonth === 12 ? currentYear + 1 : currentYear;
+      const monthsObj = {};
+      monthsObj[mKey] = {
+        anio: currentYear,
+        mes: currentMonth,
+        sueldo_mes: 0,
+        balance_inicial: 0,
+        horas_extras_real: 0,
+        horas_extras_proy: 0,
+        reintegro_real: 0,
+        ingreso_extra_proy: 0,
+        combustible_proyectado: 0,
+        cotizacion_usd: 1540,
+        cierre_visa: `24/${String(currentMonth).padStart(2, '0')}/${currentYear}`,
+        vencimiento_visa: `06/${String(nextM).padStart(2, '0')}/${nextY}`,
+        cierre_master: `22/${String(currentMonth).padStart(2, '0')}/${currentYear}`,
+        vencimiento_master: `04/${String(nextM).padStart(2, '0')}/${nextY}`
+      };
+      return {
+        userId: userId,
+        profile: {
+          sueldo_base: 0,
+          divisor_horas: 200,
+          recargo_hs_extra: 1.5,
+          cotizacion_usd_default: 1540
+        },
+        months: monthsObj,
+        recurring: [],
+        debts: [],
+        installmentPlans: [],
+        spotTransactions: []
+      };
+    }
+
+    async function clearAllUserData() {
+      dbByUser[currentUserId] = buildEmptyStoreForUser(currentUserId);
+      dbByUser['user_titular_01'] = buildEmptyStoreForUser('user_titular_01');
+      offlineSyncQueue = [];
+      safeSetStorage('mangoar_db_v1', dbByUser);
+      safeSetStorage('mangoar_sync_queue_v1', offlineSyncQueue);
+
+      if (supabaseClient && supabaseSessionUser) {
+        try {
+          const uid = supabaseSessionUser.id;
+          await supabaseClient.from('transactions').delete().eq('user_id', uid);
+          await supabaseClient.from('recurring').delete().eq('user_id', uid);
+          await supabaseClient.from('debts').delete().eq('user_id', uid);
+          await supabaseClient.from('months').delete().eq('user_id', uid);
+          await pushFullStateToSupabase(false);
+        } catch (e) {}
+      }
+
+      updateOfflineStatusUI();
+      renderAll();
+      showToast('🗑️ App vaciada en $ 0,00 · Lista para cargar tus datos a mano');
+    }
+
     function resetSeedData() {
       dbByUser['user_titular_01'] = buildInitialSeedForUser('user_titular_01');
       dbByUser['user_invitado_02'] = buildInitialSeedForUser('user_invitado_02');
-      currentUserId = 'user_titular_01';
+      if (supabaseSessionUser) {
+        const uidKey = `sb_${supabaseSessionUser.id}`;
+        dbByUser[uidKey] = buildInitialSeedForUser('user_titular_01');
+        currentUserId = uidKey;
+      } else {
+        currentUserId = 'user_titular_01';
+      }
       currentYear = BASE_YEAR;
       currentMonth = BASE_MONTH;
       dashboardCalcMode = 'proy_full';
-      persistState();
+      persistState('reset_seed', {});
       renderAll();
       showToast('Datos restaurados al Seed exacto de Gastos.xlsx');
     }
