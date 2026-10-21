@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792623334808,
-  "updated_iso": "2026-10-21T23:02:32.976Z",
+  "updated_at": 1792623922593,
+  "updated_iso": "2026-10-21T23:05:23.481Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -164,6 +164,18 @@
     "installmentPlans": [],
     "spotTransactions": [
       {
+        "id": "tx_1792623922593",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "20/11/2026",
+        "descripcion": "z",
+        "monto_ars": 245755,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "efectivo",
+        "categoria": "General"
+      },
+      {
         "id": "tx_1792623332529",
         "anio": 2026,
         "mes": 11,
@@ -188,6 +200,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792623334808
+    "updated_at": 1792623922593
   }
 }
