@@ -1,6 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": "2026-10-21T22:55:34.808Z",
+  "updated_at": 1792623334808,
+  "updated_iso": "2026-10-21T23:02:32.976Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -143,6 +144,19 @@
         "vencimiento_visa": "06/12/2026",
         "cierre_master": "22/11/2026",
         "vencimiento_master": "04/12/2026"
+      },
+      "2026-10": {
+        "anio": 2026,
+        "mes": 10,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "reintegro_real": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/10/2026",
+        "vencimiento_visa": "06/11/2026",
+        "cierre_master": "22/10/2026",
+        "vencimiento_master": "04/11/2026"
       }
     },
     "recurring": [],
@@ -173,6 +187,7 @@
         "medio_codigo": "efectivo",
         "categoria": "General"
       }
-    ]
+    ],
+    "updated_at": 1792623334808
   }
 }
