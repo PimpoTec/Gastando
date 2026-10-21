@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mangoar-pwa-v5';
+const CACHE_NAME = 'mangoar-pwa-v6';
 const ASSETS = [
   './',
   './index.html',
@@ -25,18 +25,17 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  // Nunca interceptar ni cachear llamadas a GitHub API o Supabase
+  if (!event.request.url.startsWith(self.location.origin)) return;
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const fetchPromise = fetch(event.request)
-        .then((networkRes) => {
-          if (networkRes && networkRes.status === 200 && event.request.url.startsWith(self.location.origin)) {
-            const copy = networkRes.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-          }
-          return networkRes;
-        })
-        .catch(() => cached);
-      return cached || fetchPromise;
-    })
+    fetch(event.request)
+      .then((networkRes) => {
+        if (networkRes && networkRes.status === 200) {
+          const copy = networkRes.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        }
+        return networkRes;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
