@@ -1,6 +1,6 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": "2026-10-21T22:53:50.033Z",
+  "updated_at": "2026-10-21T22:54:18.692Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -65,11 +65,102 @@
         "vencimiento_visa": "06/02/2027",
         "cierre_master": "22/01/2027",
         "vencimiento_master": "04/02/2027"
+      },
+      "2027-02": {
+        "anio": 2027,
+        "mes": 2,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "reintegro_real": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/02/2027",
+        "vencimiento_visa": "06/03/2027",
+        "cierre_master": "22/02/2027",
+        "vencimiento_master": "04/03/2027"
+      },
+      "2027-03": {
+        "anio": 2027,
+        "mes": 3,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "reintegro_real": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/03/2027",
+        "vencimiento_visa": "06/04/2027",
+        "cierre_master": "22/03/2027",
+        "vencimiento_master": "04/04/2027"
+      },
+      "2027-04": {
+        "anio": 2027,
+        "mes": 4,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "reintegro_real": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/04/2027",
+        "vencimiento_visa": "06/05/2027",
+        "cierre_master": "22/04/2027",
+        "vencimiento_master": "04/05/2027"
+      },
+      "2027-05": {
+        "anio": 2027,
+        "mes": 5,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "reintegro_real": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/05/2027",
+        "vencimiento_visa": "06/06/2027",
+        "cierre_master": "22/05/2027",
+        "vencimiento_master": "04/06/2027"
+      },
+      "2026-12": {
+        "anio": 2026,
+        "mes": 12,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "reintegro_real": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/12/2026",
+        "vencimiento_visa": "06/01/2027",
+        "cierre_master": "22/12/2026",
+        "vencimiento_master": "04/01/2027"
+      },
+      "2026-11": {
+        "anio": 2026,
+        "mes": 11,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "reintegro_real": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/11/2026",
+        "vencimiento_visa": "06/12/2026",
+        "cierre_master": "22/11/2026",
+        "vencimiento_master": "04/12/2026"
       }
     },
     "recurring": [],
     "debts": [],
     "installmentPlans": [],
-    "spotTransactions": []
+    "spotTransactions": [
+      {
+        "id": "tx_1792623257308",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "20/11/2026",
+        "descripcion": "Plata priena",
+        "monto_ars": 123456,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "efectivo",
+        "categoria": "General"
+      }
+    ]
   }
 }
