@@ -13,7 +13,7 @@ create table if not exists public.profiles (
   divisor_horas integer not null default 200,
   recargo_hs_extra numeric(5,2) not null default 1.50,
   cotizacion_usd_default numeric(12,2) not null default 1540.00,
-  tema_oscuro boolean not null default true,
+  tema_oscuro boolean not null default false,
   app_state_json jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -48,7 +48,7 @@ create table if not exists public.payment_methods (
   codigo text not null,
   nombre text not null,
   es_tarjeta boolean not null default true,
-  color text not null default '#3b82f6',
+  color text not null default '#ee8434',
   orden integer not null default 1,
   activo boolean not null default true,
   created_at timestamptz not null default now()
@@ -59,7 +59,7 @@ create table if not exists public.categories (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
   nombre text not null,
-  color text not null default '#10b981',
+  color text not null default '#ee8434',
   icono text not null default '📦',
   presupuesto_mensual numeric(14,2),
   created_at timestamptz not null default now()
