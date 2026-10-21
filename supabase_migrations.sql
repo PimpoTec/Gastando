@@ -5,6 +5,19 @@
 
 create extension if not exists "pgcrypto";
 
+-- 0. TABLA DE GUARDADO DIRECTO POR EMAIL (USO PERSONAL SIN MAGIC LINK NI LOGIN)
+create table if not exists public.user_states (
+  email text primary key,
+  sueldo_base numeric(14,2) not null default 2700000.00,
+  app_state_json jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+alter table public.user_states enable row level security;
+drop policy if exists "user_states_all_by_email" on public.user_states;
+create policy "user_states_all_by_email" on public.user_states
+  for all using (true) with check (true);
+
 -- 1. PERFILES / CONFIGURACIÓN DEL USUARIO (profiles)
 create table if not exists public.profiles (
   user_id uuid primary key references auth.users(id) on delete cascade,
