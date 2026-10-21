@@ -1,10 +1,12 @@
-const CACHE_NAME = 'mangoar-pwa-v4';
+const CACHE_NAME = 'mangoar-pwa-v5';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon-192.svg',
-  '/icon-512.svg'
+  './',
+  './index.html',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-192.svg',
+  './icon-512.svg'
 ];
 
 self.addEventListener('install', (event) => {
