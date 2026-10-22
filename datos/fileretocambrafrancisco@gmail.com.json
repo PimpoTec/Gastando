@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792667918332,
-  "updated_iso": "2026-10-22T11:18:38.486Z",
+  "updated_at": 1792667955964,
+  "updated_iso": "2026-10-22T11:19:16.116Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -247,6 +247,18 @@
         "cuota_en_base": 3,
         "cuota_total": 3,
         "fecha_compra": "20/11/2026"
+      },
+      {
+        "grupo_cuota_id": "cuota_1792667955964",
+        "descripcion": "Celu",
+        "monto_ars": 100000,
+        "medio_codigo": "visa",
+        "categoria": "General",
+        "base_anio": 2026,
+        "base_mes": 11,
+        "cuota_en_base": 11,
+        "cuota_total": 12,
+        "fecha_compra": "20/11/2026"
       }
     ],
     "spotTransactions": [
@@ -287,6 +299,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792667918332
+    "updated_at": 1792667955964
   }
 }
