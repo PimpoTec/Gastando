@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792667507062,
-  "updated_iso": "2026-10-22T11:11:47.216Z",
+  "updated_at": 1792667525359,
+  "updated_iso": "2026-10-22T11:12:05.514Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -164,6 +164,18 @@
     "installmentPlans": [],
     "spotTransactions": [
       {
+        "id": "tx_1792667525359",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "20/10/2026",
+        "descripcion": "Tarjeta Master",
+        "monto_ars": 200000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "master",
+        "categoria": "General"
+      },
+      {
         "id": "tx_1792667453521",
         "anio": 2026,
         "mes": 10,
@@ -176,6 +188,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792667507062
+    "updated_at": 1792667525359
   }
 }
