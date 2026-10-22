@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792667853558,
-  "updated_iso": "2026-10-22T11:17:33.710Z",
+  "updated_at": 1792667859574,
+  "updated_iso": "2026-10-22T11:17:39.726Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -220,8 +220,8 @@
         "categoria": "General",
         "base_anio": 2026,
         "base_mes": 11,
-        "cuota_en_base": 1,
-        "cuota_total": 6,
+        "cuota_en_base": 3,
+        "cuota_total": 3,
         "fecha_compra": "20/11/2026"
       }
     ],
@@ -263,6 +263,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792667853558
+    "updated_at": 1792667859574
   }
 }
