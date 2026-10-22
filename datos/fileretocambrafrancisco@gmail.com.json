@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792667525359,
-  "updated_iso": "2026-10-22T11:12:05.514Z",
+  "updated_at": 1792667539053,
+  "updated_iso": "2026-10-22T11:12:19.210Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -159,7 +159,17 @@
         "vencimiento_master": "13/11/2026"
       }
     },
-    "recurring": [],
+    "recurring": [
+      {
+        "id": "rec_1792667539053",
+        "descripcion": "Cochera",
+        "monto_ars": 52000,
+        "ubicacion": "fijos",
+        "desde_ym": 24322,
+        "hasta_ym": null,
+        "activo": true
+      }
+    ],
     "debts": [],
     "installmentPlans": [],
     "spotTransactions": [
@@ -188,6 +198,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792667525359
+    "updated_at": 1792667539053
   }
 }
