@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792669161727,
-  "updated_iso": "2026-10-22T11:39:21.881Z",
+  "updated_at": 1792669321454,
+  "updated_iso": "2026-10-22T11:42:01.609Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -292,13 +292,13 @@
         "mes": 10,
         "fecha": "20/10/2026",
         "descripcion": "Tarjeta Visa",
-        "monto_ars": 1220000,
+        "monto_ars": 845000,
         "monto_usd": null,
         "cotizacion": null,
         "medio_codigo": "visa",
         "categoria": "General"
       }
     ],
-    "updated_at": 1792669161727
+    "updated_at": 1792669321454
   }
 }
