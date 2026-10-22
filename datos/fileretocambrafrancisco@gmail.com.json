@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792667547933,
-  "updated_iso": "2026-10-22T11:12:28.091Z",
+  "updated_at": 1792667576457,
+  "updated_iso": "2026-10-22T11:12:56.620Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -177,6 +177,15 @@
         "desde_ym": 24322,
         "hasta_ym": null,
         "activo": true
+      },
+      {
+        "id": "rec_1792667576457",
+        "descripcion": "Suscripciones",
+        "monto_ars": 80000,
+        "ubicacion": "tarjeta_visa",
+        "desde_ym": 24322,
+        "hasta_ym": null,
+        "activo": true
       }
     ],
     "debts": [],
@@ -207,6 +216,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792667547933
+    "updated_at": 1792667576457
   }
 }
