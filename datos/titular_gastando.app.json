@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792764835424,
-  "updated_iso": "2026-10-23T14:13:55.576Z",
+  "updated_at": 1792764869271,
+  "updated_iso": "2026-10-23T14:14:29.422Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -302,6 +302,18 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1792764869271",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "01/11/2026",
+        "descripcion": "Combi",
+        "monto_ars": 95000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "visa",
+        "categoria": "General"
+      },
+      {
         "id": "tx_1792764804737",
         "anio": 2026,
         "mes": 11,
@@ -374,6 +386,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792764835424
+    "updated_at": 1792764869271
   }
 }
