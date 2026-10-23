@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
   "updated_at": 1792785238178,
-  "updated_iso": "2026-10-23T19:53:58.331Z",
+  "updated_iso": "2026-10-23T20:01:05.482Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -148,7 +148,10 @@
         "cierre_visa": "24/11/2026",
         "vencimiento_visa": "06/12/2026",
         "cierre_master": "22/11/2026",
-        "vencimiento_master": "04/12/2026"
+        "vencimiento_master": "04/12/2026",
+        "horas_extras_50": 16,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2026-10": {
         "anio": 2026,
@@ -161,7 +164,10 @@
         "cierre_visa": "29/11/2026",
         "vencimiento_visa": "06/11/2026",
         "cierre_master": "06/11/2026",
-        "vencimiento_master": "13/11/2026"
+        "vencimiento_master": "13/11/2026",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2026-09": {
         "anio": 2026,
@@ -174,7 +180,10 @@
         "cierre_visa": "24/09/2026",
         "vencimiento_visa": "06/10/2026",
         "cierre_master": "22/09/2026",
-        "vencimiento_master": "04/10/2026"
+        "vencimiento_master": "04/10/2026",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2027-06": {
         "anio": 2027,
