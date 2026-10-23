@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792765026360,
-  "updated_iso": "2026-10-23T19:52:49.612Z",
+  "updated_at": 1792785214920,
+  "updated_iso": "2026-10-23T19:53:35.073Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -297,10 +297,10 @@
         "descripcion": "Celu",
         "monto_ars": 100000,
         "medio_codigo": "visa",
-        "categoria": "General",
+        "categoria": "Tecnología",
         "base_anio": 2026,
-        "base_mes": 11,
-        "cuota_en_base": 11,
+        "base_mes": 10,
+        "cuota_en_base": 10,
         "cuota_total": 12,
         "fecha_compra": "20/11/2026"
       }
@@ -391,6 +391,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792765026360
+    "updated_at": 1792785214920
   }
 }
