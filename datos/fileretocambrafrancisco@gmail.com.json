@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792764921956,
-  "updated_iso": "2026-10-23T14:15:22.107Z",
+  "updated_at": 1792765024578,
+  "updated_iso": "2026-10-23T14:17:04.732Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -55,6 +55,11 @@
         "id": "cat_1792764921955",
         "nombre": "Aurora",
         "icono": "🏷️"
+      },
+      {
+        "id": "cat_1792765024578",
+        "nombre": "Aurora",
+        "icono": "🐶"
       }
     ],
     "closedCycles": [],
@@ -391,6 +396,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792764921956
+    "updated_at": 1792765024578
   }
 }
