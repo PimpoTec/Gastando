@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792764876619,
-  "updated_iso": "2026-10-23T14:14:36.771Z",
+  "updated_at": 1792764902029,
+  "updated_iso": "2026-10-23T14:15:02.181Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -29,7 +29,7 @@
       {
         "id": "cat_combu",
         "icono": "⛽",
-        "nombre": "Combustible"
+        "nombre": "Auto"
       },
       {
         "id": "cat_subs",
@@ -311,7 +311,7 @@
         "monto_usd": null,
         "cotizacion": null,
         "medio_codigo": "visa",
-        "categoria": "Combustible"
+        "categoria": "Auto"
       },
       {
         "id": "tx_1792764804737",
@@ -386,6 +386,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792764876619
+    "updated_at": 1792764902029
   }
 }
