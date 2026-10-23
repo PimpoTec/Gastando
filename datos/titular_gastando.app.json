@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792785225983,
-  "updated_iso": "2026-10-23T19:53:46.269Z",
+  "updated_at": 1792785238178,
+  "updated_iso": "2026-10-23T19:53:58.331Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -352,7 +352,7 @@
         "monto_usd": null,
         "cotizacion": null,
         "medio_codigo": "master",
-        "categoria": "General"
+        "categoria": "Comida"
       },
       {
         "id": "tx_1792667687434",
@@ -391,6 +391,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792785225983
+    "updated_at": 1792785238178
   }
 }
