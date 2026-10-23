@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792765024578,
-  "updated_iso": "2026-10-23T14:17:04.732Z",
+  "updated_at": 1792765026360,
+  "updated_iso": "2026-10-23T14:17:10.304Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -50,11 +50,6 @@
         "id": "cat_viajes",
         "icono": "✈️",
         "nombre": "Aviacion"
-      },
-      {
-        "id": "cat_1792764921955",
-        "nombre": "Aurora",
-        "icono": "🏷️"
       },
       {
         "id": "cat_1792765024578",
@@ -396,6 +391,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792765024578
+    "updated_at": 1792765026360
   }
 }
