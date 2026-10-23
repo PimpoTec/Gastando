@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792753959917,
-  "updated_iso": "2026-10-23T11:12:40.071Z",
+  "updated_at": 1792764612487,
+  "updated_iso": "2026-10-23T14:10:12.640Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -302,6 +302,18 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1792764612487",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "20/10/2026",
+        "descripcion": "Taller",
+        "monto_ars": 77000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "master",
+        "categoria": "General"
+      },
+      {
         "id": "tx_1792709624969",
         "anio": 2026,
         "mes": 10,
@@ -350,6 +362,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792753959917
+    "updated_at": 1792764612487
   }
 }
