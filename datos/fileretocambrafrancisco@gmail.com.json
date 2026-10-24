@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792811066453,
-  "updated_iso": "2026-10-24T03:04:26.606Z",
+  "updated_at": 1792848819085,
+  "updated_iso": "2026-10-24T13:33:39.238Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -348,18 +348,6 @@
         "categoria": "Auto"
       },
       {
-        "id": "tx_1792764804737",
-        "anio": 2026,
-        "mes": 11,
-        "fecha": "04/11/2026",
-        "descripcion": "INMAE",
-        "monto_ars": 206000,
-        "monto_usd": null,
-        "cotizacion": null,
-        "medio_codigo": "visa",
-        "categoria": "General"
-      },
-      {
         "id": "tx_1792764612487",
         "anio": 2026,
         "mes": 10,
@@ -426,6 +414,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792811066453
+    "updated_at": 1792848819085
   }
 }
