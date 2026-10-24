@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792786574963,
-  "updated_iso": "2026-10-24T01:07:53.622Z",
+  "updated_at": 1792811066453,
+  "updated_iso": "2026-10-24T03:04:26.606Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -319,6 +319,23 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1792811066453",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "20/11/2026",
+        "descripcion": "Regalo mama",
+        "monto_ars": 105000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "visa",
+        "categoria": "General",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1792764869271",
         "anio": 2026,
         "mes": 11,
@@ -409,6 +426,6 @@
         "categoria": "General"
       }
     ],
-    "updated_at": 1792786574963
+    "updated_at": 1792811066453
   }
 }
