@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mangoar-pwa-v9';
+const CACHE_NAME = 'mangoar-pwa-v10';
 const ASSETS = [
   './',
   './index.html',
