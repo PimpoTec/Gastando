@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792942699124,
-  "updated_iso": "2026-10-25T15:38:19.277Z",
+  "updated_at": 1792942913110,
+  "updated_iso": "2026-10-25T15:41:53.264Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -255,6 +255,15 @@
         "desde_ym": 24323,
         "hasta_ym": null,
         "activo": true
+      },
+      {
+        "id": "rec_1792942913110",
+        "descripcion": "Tuenti",
+        "monto_ars": 18000,
+        "ubicacion": "tarjeta_visa",
+        "desde_ym": 24323,
+        "hasta_ym": null,
+        "activo": true
       }
     ],
     "debts": [
@@ -424,6 +433,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1792942699124
+    "updated_at": 1792942913110
   }
 }
