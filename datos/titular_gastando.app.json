@@ -1,10 +1,10 @@
 {
   "email": "franciscopimpo12@gmail.com",
-  "updated_at": 1792969731583,
-  "updated_iso": "2026-10-25T23:08:51.886Z",
+  "updated_at": 1792969755195,
+  "updated_iso": "2026-10-25T23:09:15.347Z",
   "app_state_json": {
     "userId": "mail_franciscopimpo12@gmail.com",
-    "updated_at": 1792969731583,
+    "updated_at": 1792969755195,
     "profile": {
       "sueldo_base": 1000000,
       "divisor_horas": 200,
@@ -75,11 +75,61 @@
         "horas_extras_50": 0,
         "horas_extras_100": 0,
         "devolucion_manual": 0
+      },
+      "2026-11": {
+        "anio": 2026,
+        "mes": 11,
+        "sueldo_mes": 1000000,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/11/2026",
+        "vencimiento_visa": "06/12/2026",
+        "cierre_master": "22/11/2026",
+        "vencimiento_master": "04/12/2026"
+      },
+      "2026-12": {
+        "anio": 2026,
+        "mes": 12,
+        "sueldo_mes": 1000000,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/12/2026",
+        "vencimiento_visa": "06/01/2027",
+        "cierre_master": "22/12/2026",
+        "vencimiento_master": "04/01/2027"
       }
     },
     "recurring": [],
     "debts": [],
     "installmentPlans": [],
-    "spotTransactions": []
+    "spotTransactions": [
+      {
+        "id": "tx_1792969755195",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "20/10/2026",
+        "descripcion": "Taller",
+        "monto_ars": 258,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "efectivo",
+        "categoria": "General",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      }
+    ]
   }
 }
