@@ -1,14 +1,14 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792949485880,
-  "updated_iso": "2026-10-25T17:31:26.442Z",
+  "updated_at": 1792949684568,
+  "updated_iso": "2026-10-25T17:34:44.608Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
-      "sueldo_base": 2700000,
+      "sueldo_base": 0,
       "divisor_horas": 200,
       "recargo_hs_extra": 1.5,
-      "cotizacion_usd_default": 1555
+      "cotizacion_usd_default": 1540
     },
     "categories": [
       {
@@ -70,7 +70,10 @@
         "cierre_visa": "24/01/2027",
         "vencimiento_visa": "06/02/2027",
         "cierre_master": "22/01/2027",
-        "vencimiento_master": "04/02/2027"
+        "vencimiento_master": "04/02/2027",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2027-02": {
         "anio": 2027,
@@ -83,7 +86,10 @@
         "cierre_visa": "24/02/2027",
         "vencimiento_visa": "06/03/2027",
         "cierre_master": "22/02/2027",
-        "vencimiento_master": "04/03/2027"
+        "vencimiento_master": "04/03/2027",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2027-03": {
         "anio": 2027,
@@ -127,7 +133,7 @@
       "2026-12": {
         "anio": 2026,
         "mes": 12,
-        "sueldo_mes": 2700000,
+        "sueldo_mes": 0,
         "balance_inicial": 0,
         "horas_extras_real": 0,
         "reintegro_real": 0,
@@ -484,6 +490,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1792949485880
+    "updated_at": 1792949684568
   }
 }
