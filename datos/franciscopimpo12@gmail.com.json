@@ -1,12 +1,12 @@
 {
   "email": "franciscopimpo12@gmail.com",
-  "updated_at": 1792969695699,
-  "updated_iso": "2026-10-25T23:08:20.099Z",
+  "updated_at": 1792969710870,
+  "updated_iso": "2026-10-25T23:08:31.022Z",
   "app_state_json": {
     "userId": "mail_franciscopimpo12@gmail.com",
-    "updated_at": 1792969695699,
+    "updated_at": 1792969710870,
     "profile": {
-      "sueldo_base": 0,
+      "sueldo_base": 100000,
       "divisor_horas": 200,
       "recargo_hs_extra": 1.5,
       "cotizacion_usd_default": 1540
@@ -63,7 +63,7 @@
       "2026-10": {
         "anio": 2026,
         "mes": 10,
-        "sueldo_mes": 0,
+        "sueldo_mes": 100000,
         "balance_inicial": 0,
         "horas_extras_real": 0,
         "reintegro_real": 0,
