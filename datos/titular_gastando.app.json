@@ -1,10 +1,10 @@
 {
   "email": "franciscopimpo12@gmail.com",
-  "updated_at": 1792969755195,
-  "updated_iso": "2026-10-25T23:09:15.347Z",
+  "updated_at": 1792969770152,
+  "updated_iso": "2026-10-25T23:09:30.304Z",
   "app_state_json": {
     "userId": "mail_franciscopimpo12@gmail.com",
-    "updated_at": 1792969755195,
+    "updated_at": 1792969770152,
     "profile": {
       "sueldo_base": 1000000,
       "divisor_horas": 200,
@@ -113,6 +113,23 @@
     "debts": [],
     "installmentPlans": [],
     "spotTransactions": [
+      {
+        "id": "tx_1792969770152",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "20/10/2026",
+        "descripcion": "Tarjeta Visa",
+        "monto_ars": 258020,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "visa",
+        "categoria": "General",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
       {
         "id": "tx_1792969755195",
         "anio": 2026,
