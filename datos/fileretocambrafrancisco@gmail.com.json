@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792949730720,
-  "updated_iso": "2026-10-25T17:35:31.569Z",
+  "updated_at": 1792949799624,
+  "updated_iso": "2026-10-25T17:36:40.418Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -571,6 +571,23 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1792949799624",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "20/10/2026",
+        "descripcion": "Golf",
+        "monto_ars": 31000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "medio_codigo": "visa",
+        "categoria": "Deporte",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1792943509083",
         "anio": 2026,
         "mes": 10,
@@ -700,6 +717,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1792949730720
+    "updated_at": 1792949799624
   }
 }
