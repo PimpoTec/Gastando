@@ -1,11 +1,11 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792949684568,
-  "updated_iso": "2026-10-25T17:34:48.184Z",
+  "updated_at": 1792949730720,
+  "updated_iso": "2026-10-25T17:35:31.569Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
-      "sueldo_base": 0,
+      "sueldo_base": 2700000,
       "divisor_horas": 200,
       "recargo_hs_extra": 1.5,
       "cotizacion_usd_default": 1540
@@ -102,7 +102,10 @@
         "cierre_visa": "24/03/2027",
         "vencimiento_visa": "06/04/2027",
         "cierre_master": "22/03/2027",
-        "vencimiento_master": "04/04/2027"
+        "vencimiento_master": "04/04/2027",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2027-04": {
         "anio": 2027,
@@ -115,7 +118,10 @@
         "cierre_visa": "24/04/2027",
         "vencimiento_visa": "06/05/2027",
         "cierre_master": "22/04/2027",
-        "vencimiento_master": "04/05/2027"
+        "vencimiento_master": "04/05/2027",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2027-05": {
         "anio": 2027,
@@ -128,12 +134,15 @@
         "cierre_visa": "24/05/2027",
         "vencimiento_visa": "06/06/2027",
         "cierre_master": "22/05/2027",
-        "vencimiento_master": "04/06/2027"
+        "vencimiento_master": "04/06/2027",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2026-12": {
         "anio": 2026,
         "mes": 12,
-        "sueldo_mes": 0,
+        "sueldo_mes": 2700000,
         "balance_inicial": 0,
         "horas_extras_real": 0,
         "reintegro_real": 0,
@@ -205,7 +214,10 @@
         "cierre_visa": "24/06/2027",
         "vencimiento_visa": "06/07/2027",
         "cierre_master": "22/06/2027",
-        "vencimiento_master": "04/07/2027"
+        "vencimiento_master": "04/07/2027",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2027-07": {
         "anio": 2027,
@@ -218,7 +230,10 @@
         "cierre_visa": "24/07/2027",
         "vencimiento_visa": "06/08/2027",
         "cierre_master": "22/07/2027",
-        "vencimiento_master": "04/08/2027"
+        "vencimiento_master": "04/08/2027",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
       },
       "2027-08": {
         "anio": 2027,
@@ -231,7 +246,202 @@
         "cierre_visa": "24/08/2027",
         "vencimiento_visa": "06/09/2027",
         "cierre_master": "22/08/2027",
-        "vencimiento_master": "04/09/2027"
+        "vencimiento_master": "04/09/2027",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
+      },
+      "2027-09": {
+        "anio": 2027,
+        "mes": 9,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/09/2027",
+        "vencimiento_visa": "06/10/2027",
+        "cierre_master": "22/09/2027",
+        "vencimiento_master": "04/10/2027"
+      },
+      "2027-10": {
+        "anio": 2027,
+        "mes": 10,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/10/2027",
+        "vencimiento_visa": "06/11/2027",
+        "cierre_master": "22/10/2027",
+        "vencimiento_master": "04/11/2027"
+      },
+      "2027-11": {
+        "anio": 2027,
+        "mes": 11,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/11/2027",
+        "vencimiento_visa": "06/12/2027",
+        "cierre_master": "22/11/2027",
+        "vencimiento_master": "04/12/2027"
+      },
+      "2027-12": {
+        "anio": 2027,
+        "mes": 12,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/12/2027",
+        "vencimiento_visa": "06/01/2028",
+        "cierre_master": "22/12/2027",
+        "vencimiento_master": "04/01/2028"
+      },
+      "2028-01": {
+        "anio": 2028,
+        "mes": 1,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/01/2028",
+        "vencimiento_visa": "06/02/2028",
+        "cierre_master": "22/01/2028",
+        "vencimiento_master": "04/02/2028"
+      },
+      "2028-02": {
+        "anio": 2028,
+        "mes": 2,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/02/2028",
+        "vencimiento_visa": "06/03/2028",
+        "cierre_master": "22/02/2028",
+        "vencimiento_master": "04/03/2028"
+      },
+      "2028-03": {
+        "anio": 2028,
+        "mes": 3,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/03/2028",
+        "vencimiento_visa": "06/04/2028",
+        "cierre_master": "22/03/2028",
+        "vencimiento_master": "04/04/2028"
+      },
+      "2028-04": {
+        "anio": 2028,
+        "mes": 4,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/04/2028",
+        "vencimiento_visa": "06/05/2028",
+        "cierre_master": "22/04/2028",
+        "vencimiento_master": "04/05/2028"
+      },
+      "2028-05": {
+        "anio": 2028,
+        "mes": 5,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/05/2028",
+        "vencimiento_visa": "06/06/2028",
+        "cierre_master": "22/05/2028",
+        "vencimiento_master": "04/06/2028"
+      },
+      "2028-06": {
+        "anio": 2028,
+        "mes": 6,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/06/2028",
+        "vencimiento_visa": "06/07/2028",
+        "cierre_master": "22/06/2028",
+        "vencimiento_master": "04/07/2028"
+      },
+      "2028-07": {
+        "anio": 2028,
+        "mes": 7,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/07/2028",
+        "vencimiento_visa": "06/08/2028",
+        "cierre_master": "22/07/2028",
+        "vencimiento_master": "04/08/2028"
+      },
+      "2028-08": {
+        "anio": 2028,
+        "mes": 8,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/08/2028",
+        "vencimiento_visa": "06/09/2028",
+        "cierre_master": "22/08/2028",
+        "vencimiento_master": "04/09/2028"
       }
     },
     "recurring": [
@@ -490,6 +700,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1792949684568
+    "updated_at": 1792949730720
   }
 }
