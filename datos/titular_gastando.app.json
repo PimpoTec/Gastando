@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1792942619740,
-  "updated_iso": "2026-10-25T15:36:59.894Z",
+  "updated_at": 1792942699124,
+  "updated_iso": "2026-10-25T15:38:19.277Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -246,6 +246,15 @@
         "desde_ym": 24322,
         "hasta_ym": null,
         "activo": true
+      },
+      {
+        "id": "rec_1792942699124",
+        "descripcion": "Google",
+        "monto_ars": 8000,
+        "ubicacion": "tarjeta_visa",
+        "desde_ym": 24323,
+        "hasta_ym": null,
+        "activo": true
       }
     ],
     "debts": [
@@ -415,6 +424,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1792942619740
+    "updated_at": 1792942699124
   }
 }
