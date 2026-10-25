@@ -1,0 +1,85 @@
+{
+  "email": "franciscopimpo12@gmail.com",
+  "updated_at": 1792969695137,
+  "updated_iso": "2026-10-25T23:08:15.145Z",
+  "app_state_json": {
+    "userId": "mail_franciscopimpo12@gmail.com",
+    "updated_at": 1792969695137,
+    "profile": {
+      "sueldo_base": 0,
+      "divisor_horas": 200,
+      "recargo_hs_extra": 1.5,
+      "cotizacion_usd_default": 1540
+    },
+    "categories": [
+      {
+        "id": "cat_general",
+        "icono": "📦",
+        "nombre": "General"
+      },
+      {
+        "id": "cat_super",
+        "icono": "🛒",
+        "nombre": "Supermercado"
+      },
+      {
+        "id": "cat_comida",
+        "icono": "🍔",
+        "nombre": "Comida"
+      },
+      {
+        "id": "cat_combu",
+        "icono": "⛽",
+        "nombre": "Auto"
+      },
+      {
+        "id": "cat_subs",
+        "icono": "🌐",
+        "nombre": "Suscripciones"
+      },
+      {
+        "id": "cat_tecno",
+        "icono": "📱",
+        "nombre": "Tecnología"
+      },
+      {
+        "id": "cat_deporte",
+        "icono": "⛳",
+        "nombre": "Deporte"
+      },
+      {
+        "id": "cat_viajes",
+        "icono": "✈️",
+        "nombre": "Aviacion"
+      },
+      {
+        "id": "cat_1792765024578",
+        "nombre": "Aurora",
+        "icono": "🐶"
+      }
+    ],
+    "closedCycles": [],
+    "months": {
+      "2026-10": {
+        "anio": 2026,
+        "mes": 10,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "reintegro_real": 0,
+        "cotizacion_usd": 1540,
+        "cierre_visa": "24/10/2026",
+        "vencimiento_visa": "06/11/2026",
+        "cierre_master": "22/10/2026",
+        "vencimiento_master": "04/11/2026",
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "devolucion_manual": 0
+      }
+    },
+    "recurring": [],
+    "debts": [],
+    "installmentPlans": [],
+    "spotTransactions": []
+  }
+}
