@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793015180956,
-  "updated_iso": "2026-10-26T11:46:20.959Z",
+  "updated_at": 1793052017226,
+  "updated_iso": "2026-10-26T22:00:17.231Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -201,7 +201,9 @@
         "vencimiento_master": "04/10/2026",
         "horas_extras_50": 0,
         "horas_extras_100": 0,
-        "devolucion_manual": 0
+        "devolucion_manual": 0,
+        "cotizacion_cierre_visa": 1560,
+        "cotizacion_cierre_master": 1550
       },
       "2027-06": {
         "anio": 2027,
@@ -442,6 +444,24 @@
         "vencimiento_visa": "06/09/2028",
         "cierre_master": "22/08/2028",
         "vencimiento_master": "04/09/2028"
+      },
+      "2026-08": {
+        "anio": 2026,
+        "mes": 8,
+        "sueldo_mes": 2700000,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1575,
+        "cierre_visa": "24/08/2026",
+        "vencimiento_visa": "06/09/2026",
+        "cierre_master": "22/08/2026",
+        "vencimiento_master": "04/09/2026",
+        "cotizacion_cierre_visa": 1565,
+        "cotizacion_cierre_master": 1550
       }
     },
     "recurring": [
@@ -717,6 +737,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793015180956
+    "updated_at": 1793052017226
   }
 }
