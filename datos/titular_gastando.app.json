@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793052234078,
-  "updated_iso": "2026-10-26T22:03:54.825Z",
+  "updated_at": 1793052272558,
+  "updated_iso": "2026-10-26T22:04:33.583Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -591,6 +591,24 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1793052272558",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "01/11/2026",
+        "descripcion": "Asado CTS",
+        "monto_ars": 45000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "visa",
+        "categoria": "Comida",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1792949799624",
         "anio": 2026,
         "mes": 10,
@@ -738,6 +756,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793052234078
+    "updated_at": 1793052272558
   }
 }
