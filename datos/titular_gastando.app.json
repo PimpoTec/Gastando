@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793108639779,
-  "updated_iso": "2026-10-27T13:43:59.933Z",
+  "updated_at": 1793108642709,
+  "updated_iso": "2026-10-27T13:44:05.754Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -523,7 +523,7 @@
         "id": "rec_1792943015480",
         "descripcion": "Spotify",
         "monto_ars": 8000,
-        "ubicacion": "fijos",
+        "ubicacion": "tarjeta_visa",
         "desde_ym": 24323,
         "hasta_ym": null,
         "activo": true
@@ -810,6 +810,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793108639779
+    "updated_at": 1793108642709
   }
 }
