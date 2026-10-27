@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793106974615,
-  "updated_iso": "2026-10-27T13:16:16.318Z",
+  "updated_at": 1793107005897,
+  "updated_iso": "2026-10-27T13:16:46.054Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -202,8 +202,8 @@
         "horas_extras_50": 0,
         "horas_extras_100": 0,
         "devolucion_manual": 0,
-        "cotizacion_cierre_visa": 1575,
-        "cotizacion_cierre_master": 1575
+        "cotizacion_cierre_visa": 1560,
+        "cotizacion_cierre_master": 1550
       },
       "2027-06": {
         "anio": 2027,
@@ -460,8 +460,8 @@
         "vencimiento_visa": "06/09/2026",
         "cierre_master": "22/08/2026",
         "vencimiento_master": "04/09/2026",
-        "cotizacion_cierre_visa": 1575,
-        "cotizacion_cierre_master": 1575
+        "cotizacion_cierre_visa": 1565,
+        "cotizacion_cierre_master": 1550
       }
     },
     "recurring": [
@@ -590,6 +590,24 @@
       }
     ],
     "spotTransactions": [
+      {
+        "id": "tx_1793107005897",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "27/10/2026",
+        "descripcion": "Supermercado",
+        "monto_ars": 105000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "visa",
+        "categoria": "Comida",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
       {
         "id": "tx_1793052272558",
         "anio": 2026,
@@ -756,6 +774,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793106974615
+    "updated_at": 1793107005897
   }
 }
