@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793108362538,
-  "updated_iso": "2026-10-27T13:39:22.691Z",
+  "updated_at": 1793108581024,
+  "updated_iso": "2026-10-27T13:43:01.179Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -533,7 +533,7 @@
       {
         "id": "debt_1792667629725",
         "nombre": "Prestamo",
-        "cuota_mensual": 580000,
+        "cuota_mensual": 577000,
         "saldo_total": 20000000,
         "tipo": "prestamo",
         "activo": true
@@ -810,6 +810,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793108362538
+    "updated_at": 1793108581024
   }
 }
