@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793141818390,
-  "updated_iso": "2026-10-27T22:56:59.398Z",
+  "updated_at": 1793141825322,
+  "updated_iso": "2026-10-27T22:57:06.357Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -161,7 +161,7 @@
         "sueldo_mes": 2700000,
         "balance_inicial": 0,
         "horas_extras_real": 0,
-        "reintegro_real": 50000,
+        "reintegro_real": 0,
         "cotizacion_usd": 1575,
         "cierre_visa": "24/11/2026",
         "vencimiento_visa": "06/12/2026",
@@ -816,6 +816,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793141818390
+    "updated_at": 1793141825322
   }
 }
