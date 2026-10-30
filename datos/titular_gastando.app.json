@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793354670248,
-  "updated_iso": "2026-10-30T10:04:30.400Z",
+  "updated_at": 1793354719449,
+  "updated_iso": "2026-10-30T10:05:19.465Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -57,28 +57,7 @@
         "icono": "🐶"
       }
     ],
-    "closedCycles": [
-      {
-        "id": "cc_visa_1793354670248",
-        "medio_codigo": "visa",
-        "fecha_cierre": "29/11/2026",
-        "fecha_vencimiento": "06/11/2026",
-        "cotizacion_cierre": 1565,
-        "subtotal_sin_impuestos": 1385000,
-        "impuesto_125": 17313,
-        "monto_total": 1402313
-      },
-      {
-        "id": "cc_master_1793354670248",
-        "medio_codigo": "master",
-        "fecha_cierre": "05/11/2026",
-        "fecha_vencimiento": "13/11/2026",
-        "cotizacion_cierre": 1565,
-        "subtotal_sin_impuestos": 431000,
-        "impuesto_125": 5388,
-        "monto_total": 436388
-      }
-    ],
+    "closedCycles": [],
     "months": {
       "2027-01": {
         "anio": 2027,
@@ -612,6 +591,24 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1793354623382",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "30/10/2026",
+        "descripcion": "V",
+        "monto_ars": 100000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "visa",
+        "categoria": "General",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1793314956089",
         "anio": 2026,
         "mes": 11,
@@ -645,8 +642,7 @@
         "devolucion_modo": "custom",
         "devolucion_cobrada": true,
         "devolucion_cobrada_anio": 2026,
-        "devolucion_cobrada_mes": 11,
-        "archived_in_closed_cycle": true
+        "devolucion_cobrada_mes": 11
       },
       {
         "id": "tx_1793108345866",
@@ -682,8 +678,7 @@
         "devolucion_modo": null,
         "devolucion_cobrada": false,
         "devolucion_cobrada_anio": null,
-        "devolucion_cobrada_mes": null,
-        "archived_in_closed_cycle": true
+        "devolucion_cobrada_mes": null
       },
       {
         "id": "tx_1792949799624",
@@ -701,8 +696,7 @@
         "devolucion_cobrada": false,
         "devolucion_cobrada_anio": null,
         "devolucion_cobrada_mes": null,
-        "cotizacion_fija_dia": false,
-        "archived_in_closed_cycle": true
+        "cotizacion_fija_dia": false
       },
       {
         "id": "tx_1792943509083",
@@ -719,8 +713,7 @@
         "devolucion_modo": "full",
         "devolucion_cobrada": false,
         "devolucion_cobrada_anio": null,
-        "devolucion_cobrada_mes": null,
-        "archived_in_closed_cycle": true
+        "devolucion_cobrada_mes": null
       },
       {
         "id": "tx_1792811066453",
@@ -769,8 +762,7 @@
         "categoria": "General",
         "devolucion_esperada": 77000,
         "devolucion_modo": "full",
-        "devolucion_cobrada": false,
-        "archived_in_closed_cycle": true
+        "devolucion_cobrada": false
       },
       {
         "id": "tx_1792709624969",
@@ -787,8 +779,7 @@
         "devolucion_modo": null,
         "devolucion_cobrada": false,
         "devolucion_cobrada_anio": null,
-        "devolucion_cobrada_mes": null,
-        "archived_in_closed_cycle": true
+        "devolucion_cobrada_mes": null
       },
       {
         "id": "tx_1792667687434",
@@ -823,8 +814,7 @@
         "devolucion_modo": null,
         "devolucion_cobrada": false,
         "devolucion_cobrada_anio": null,
-        "devolucion_cobrada_mes": null,
-        "archived_in_closed_cycle": true
+        "devolucion_cobrada_mes": null
       },
       {
         "id": "tx_1792667453521",
@@ -841,10 +831,9 @@
         "devolucion_modo": null,
         "devolucion_cobrada": false,
         "devolucion_cobrada_anio": null,
-        "devolucion_cobrada_mes": null,
-        "archived_in_closed_cycle": true
+        "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793354670248
+    "updated_at": 1793354719449
   }
 }
