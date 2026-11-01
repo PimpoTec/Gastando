@@ -1,10 +1,10 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793543685325,
-  "updated_iso": "2026-11-01T14:34:45.484Z",
+  "updated_at": 1793543704757,
+  "updated_iso": "2026-11-01T14:35:04.909Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793543685325,
+    "updated_at": 1793543704757,
     "profile": {
       "sueldo_base": 0,
       "divisor_horas": 200,
@@ -93,6 +93,24 @@
     "debts": [],
     "installmentPlans": [],
     "spotTransactions": [
+      {
+        "id": "tx_1793543704757",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "01/10/2026",
+        "descripcion": "YPF CTS",
+        "monto_ars": 60000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "master",
+        "categoria": "Combustible",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
       {
         "id": "tx_1793543685325",
         "anio": 2026,
