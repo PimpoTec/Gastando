@@ -1,10 +1,10 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793543640969,
-  "updated_iso": "2026-11-01T14:34:01.122Z",
+  "updated_at": 1793543685325,
+  "updated_iso": "2026-11-01T14:34:45.484Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793543640969,
+    "updated_at": 1793543685325,
     "profile": {
       "sueldo_base": 0,
       "divisor_horas": 200,
@@ -92,6 +92,25 @@
     "recurring": [],
     "debts": [],
     "installmentPlans": [],
-    "spotTransactions": []
+    "spotTransactions": [
+      {
+        "id": "tx_1793543685325",
+        "anio": 2026,
+        "mes": 10,
+        "fecha": "01/10/2026",
+        "descripcion": "Shell Aceite",
+        "monto_ars": 26800,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "master",
+        "categoria": "General",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      }
+    ]
   }
 }
