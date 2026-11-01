@@ -1,10 +1,10 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793574776859,
-  "updated_iso": "2026-11-01T23:12:57.010Z",
+  "updated_at": 1793574824909,
+  "updated_iso": "2026-11-01T23:13:45.060Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793574776859,
+    "updated_at": 1793574824909,
     "profile": {
       "sueldo_base": 0,
       "divisor_horas": 200,
@@ -82,11 +82,10 @@
         "reintegro_real": 0,
         "devolucion_manual": 0,
         "cotizacion_usd": 1565,
-        "cierre_visa": "24/10/2026",
-        "vencimiento_visa": "06/11/2026",
+        "cierre_visa": "19/11/2026",
+        "vencimiento_visa": "06/12/2026",
         "cierre_master": "26/11/2026",
-        "vencimiento_master": "13/12/2026",
-        "cotizacion_cierre_visa": 1565
+        "vencimiento_master": "13/12/2026"
       },
       "2026-01": {
         "anio": 2026,
