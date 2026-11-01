@@ -1,10 +1,10 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793574728462,
-  "updated_iso": "2026-11-01T23:12:08.613Z",
+  "updated_at": 1793574772375,
+  "updated_iso": "2026-11-01T23:12:52.527Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793574728462,
+    "updated_at": 1793574772375,
     "profile": {
       "sueldo_base": 0,
       "divisor_horas": 200,
@@ -87,6 +87,22 @@
         "cierre_master": "26/11/2026",
         "vencimiento_master": "13/12/2026",
         "cotizacion_cierre_visa": 1565
+      },
+      "2026-01": {
+        "anio": 2026,
+        "mes": 1,
+        "sueldo_mes": 0,
+        "balance_inicial": 0,
+        "horas_extras_real": 0,
+        "horas_extras_50": 0,
+        "horas_extras_100": 0,
+        "reintegro_real": 0,
+        "devolucion_manual": 0,
+        "cotizacion_usd": 1565,
+        "cierre_visa": "24/01/2026",
+        "vencimiento_visa": "06/02/2026",
+        "cierre_master": "22/01/2026",
+        "vencimiento_master": "04/02/2026"
       }
     },
     "recurring": [],
@@ -96,8 +112,8 @@
       {
         "id": "tx_1793543704757",
         "anio": 2026,
-        "mes": 10,
-        "fecha": "01/10/2026",
+        "mes": 11,
+        "fecha": "01/11/2026",
         "descripcion": "YPF para CTS",
         "monto_ars": 60000,
         "monto_usd": null,
