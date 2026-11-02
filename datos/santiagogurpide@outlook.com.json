@@ -1,10 +1,10 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793574824909,
-  "updated_iso": "2026-11-01T23:13:45.060Z",
+  "updated_at": 1793624172598,
+  "updated_iso": "2026-11-02T12:56:12.750Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793574824909,
+    "updated_at": 1793624172598,
     "profile": {
       "sueldo_base": 0,
       "divisor_horas": 200,
@@ -108,6 +108,24 @@
     "debts": [],
     "installmentPlans": [],
     "spotTransactions": [
+      {
+        "id": "tx_1793624172597",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "02/11/2026",
+        "descripcion": "Toxic shine",
+        "monto_ars": 43831,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "master",
+        "categoria": "General",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
       {
         "id": "tx_1793543704757",
         "anio": 2026,
