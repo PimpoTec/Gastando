@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793756935712,
-  "updated_iso": "2026-11-04T01:48:55.865Z",
+  "updated_at": 1793756948840,
+  "updated_iso": "2026-11-04T01:49:08.993Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -605,6 +605,24 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1793756948840",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "03/11/2026",
+        "descripcion": "Vicky super",
+        "monto_ars": 56000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "visa",
+        "categoria": "Supermercado",
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1793756935712",
         "anio": 2026,
         "mes": 11,
@@ -962,6 +980,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793756935712
+    "updated_at": 1793756948840
   }
 }
