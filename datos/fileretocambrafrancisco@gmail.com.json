@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793833635984,
-  "updated_iso": "2026-11-04T23:07:16.752Z",
+  "updated_at": 1793833699338,
+  "updated_iso": "2026-11-04T23:08:19.963Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -669,6 +669,25 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1793833699338",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "04/11/2026",
+        "descripcion": "Helado",
+        "monto_ars": 20000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "efectivo",
+        "categoria": "Comida",
+        "es_previsto_pendiente": false,
+        "devolucion_esperada": 6500,
+        "devolucion_modo": "custom",
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1793833635984",
         "anio": 2026,
         "mes": 11,
@@ -1121,6 +1140,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793833635984
+    "updated_at": 1793833699338
   }
 }
