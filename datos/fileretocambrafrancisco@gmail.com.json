@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793800607120,
-  "updated_iso": "2026-11-04T13:56:47.272Z",
+  "updated_at": 1793800609869,
+  "updated_iso": "2026-11-04T13:56:52.509Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -987,6 +987,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793800607120
+    "updated_at": 1793800609869
   }
 }
