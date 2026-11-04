@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793802530413,
-  "updated_iso": "2026-11-04T14:28:50.566Z",
+  "updated_at": 1793802549907,
+  "updated_iso": "2026-11-04T14:29:10.060Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -182,7 +182,7 @@
         "sueldo_mes": 2700000,
         "balance_inicial": 0,
         "horas_extras_real": 0,
-        "reintegro_real": 0,
+        "reintegro_real": 20000,
         "cotizacion_usd": 1575,
         "cierre_visa": "26/11/2026",
         "vencimiento_visa": "04/12/2026",
@@ -201,7 +201,15 @@
         "hs50_fecha_cobro": "",
         "hs100_cobradas": false,
         "hs100_fecha_cobro": "",
-        "ingresos_extras_items": []
+        "ingresos_extras_items": [
+          {
+            "id": "iex_1793802549906_sinl",
+            "descripcion": "Apuesta",
+            "monto_ars": 20000,
+            "cobrado": true,
+            "fecha_cobro": "04/11/2026"
+          }
+        ]
       },
       "2026-10": {
         "anio": 2026,
@@ -1015,6 +1023,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793802530413
+    "updated_at": 1793802549907
   }
 }
