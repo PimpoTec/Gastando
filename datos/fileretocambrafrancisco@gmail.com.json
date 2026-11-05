@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793890532887,
-  "updated_iso": "2026-11-05T14:55:33.039Z",
+  "updated_at": 1793900423819,
+  "updated_iso": "2026-11-05T17:40:23.972Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -679,10 +679,10 @@
         "descripcion": "Auto",
         "monto_ars": 100000,
         "medio_codigo": "visa",
-        "categoria": "General",
+        "categoria": "Auto",
         "base_anio": 2026,
-        "base_mes": 12,
-        "cuota_en_base": 2,
+        "base_mes": 11,
+        "cuota_en_base": 1,
         "cuota_total": 3,
         "fecha_compra": "05/11/2026",
         "es_previsto_pendiente": false
@@ -1161,6 +1161,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793890532887
+    "updated_at": 1793900423819
   }
 }
