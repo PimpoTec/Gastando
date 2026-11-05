@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793833699338,
-  "updated_iso": "2026-11-04T23:08:19.963Z",
+  "updated_at": 1793890516668,
+  "updated_iso": "2026-11-05T14:55:16.820Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -665,6 +665,19 @@
         "cuota_en_base": 10,
         "cuota_total": 12,
         "fecha_compra": "20/11/2026"
+      },
+      {
+        "grupo_cuota_id": "cuota_1793890516667",
+        "descripcion": "Auto",
+        "monto_ars": 300000,
+        "medio_codigo": "visa",
+        "categoria": "General",
+        "base_anio": 2026,
+        "base_mes": 11,
+        "cuota_en_base": 1,
+        "cuota_total": 3,
+        "fecha_compra": "05/11/2026",
+        "es_previsto_pendiente": false
       }
     ],
     "spotTransactions": [
@@ -1140,6 +1153,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793833699338
+    "updated_at": 1793890516668
   }
 }
