@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793890516668,
-  "updated_iso": "2026-11-05T14:55:16.820Z",
+  "updated_at": 1793890532887,
+  "updated_iso": "2026-11-05T14:55:33.039Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -86,7 +86,15 @@
         "vencimiento_master": "04/02/2027",
         "horas_extras_50": 0,
         "horas_extras_100": 0,
-        "devolucion_manual": 0
+        "devolucion_manual": 0,
+        "pagados_mes": {},
+        "sueldo_cobrado": true,
+        "sueldo_fecha_cobro": "",
+        "hs50_cobradas": false,
+        "hs50_fecha_cobro": "",
+        "hs100_cobradas": false,
+        "hs100_fecha_cobro": "",
+        "ingresos_extras_items": []
       },
       "2027-02": {
         "anio": 2027,
@@ -669,12 +677,12 @@
       {
         "grupo_cuota_id": "cuota_1793890516667",
         "descripcion": "Auto",
-        "monto_ars": 300000,
+        "monto_ars": 100000,
         "medio_codigo": "visa",
         "categoria": "General",
         "base_anio": 2026,
-        "base_mes": 11,
-        "cuota_en_base": 1,
+        "base_mes": 12,
+        "cuota_en_base": 2,
         "cuota_total": 3,
         "fecha_compra": "05/11/2026",
         "es_previsto_pendiente": false
@@ -1153,6 +1161,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793890516668
+    "updated_at": 1793890532887
   }
 }
