@@ -1,10 +1,10 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793957399419,
-  "updated_iso": "2026-11-06T09:29:59.570Z",
+  "updated_at": 1793957423662,
+  "updated_iso": "2026-11-06T09:30:23.815Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793957399419,
+    "updated_at": 1793957423662,
     "profile": {
       "sueldo_base": 2044335,
       "divisor_horas": 200,
@@ -72,7 +72,7 @@
         "vencimiento_master": "04/12/2026",
         "pagados_mes": {},
         "sueldo_cobrado": true,
-        "sueldo_fecha_cobro": "",
+        "sueldo_fecha_cobro": "05/11/2026",
         "hs50_cobradas": false,
         "hs50_fecha_cobro": "",
         "hs100_cobradas": false,
