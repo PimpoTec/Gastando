@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793997391128,
-  "updated_iso": "2026-11-06T20:36:31.281Z",
+  "updated_at": 1793997393573,
+  "updated_iso": "2026-11-06T20:36:34.834Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -202,7 +202,9 @@
         "pagados_mes": {
           "fijo_rec_1792667539053": true,
           "fijo_rec_1792667547933": true,
-          "card_visa": true
+          "card_visa": true,
+          "debt_debt_1792667629725": true,
+          "card_master": true
         },
         "sueldo_cobrado": true,
         "sueldo_fecha_cobro": "05/11/2026",
@@ -1158,6 +1160,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793997391128
+    "updated_at": 1793997393573
   }
 }
