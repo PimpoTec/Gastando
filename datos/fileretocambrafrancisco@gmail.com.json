@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793993463810,
-  "updated_iso": "2026-11-06T19:31:03.966Z",
+  "updated_at": 1793997276839,
+  "updated_iso": "2026-11-06T20:34:36.991Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -228,7 +228,7 @@
             "id": "iex_1793802574210_r5l4",
             "descripcion": "Viajes",
             "monto_ars": 200000,
-            "cobrado": true,
+            "cobrado": false,
             "fecha_cobro": "06/11/2026"
           },
           {
@@ -1169,6 +1169,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793993463810
+    "updated_at": 1793997276839
   }
 }
