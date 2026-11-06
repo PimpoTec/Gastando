@@ -1,10 +1,10 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793961314219,
-  "updated_iso": "2026-11-06T10:35:14.373Z",
+  "updated_at": 1793961318414,
+  "updated_iso": "2026-11-06T10:35:18.568Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793961314219,
+    "updated_at": 1793961318414,
     "profile": {
       "sueldo_base": 2044335,
       "divisor_horas": 200,
@@ -147,7 +147,7 @@
         "id": "tx_1793957497434",
         "anio": 2026,
         "mes": 11,
-        "fecha": "06/11/2026",
+        "fecha": "05/11/2026",
         "descripcion": "Mcdonalds con Volpini",
         "monto_ars": 20600,
         "monto_usd": null,
