@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793990577645,
-  "updated_iso": "2026-11-06T18:42:57.797Z",
+  "updated_at": 1793992272896,
+  "updated_iso": "2026-11-06T19:11:13.050Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -730,9 +730,9 @@
         "es_previsto_pendiente": false,
         "devolucion_esperada": 12500,
         "devolucion_modo": "half",
-        "devolucion_cobrada": false,
-        "devolucion_cobrada_anio": null,
-        "devolucion_cobrada_mes": null
+        "devolucion_cobrada": true,
+        "devolucion_cobrada_anio": 2026,
+        "devolucion_cobrada_mes": 11
       },
       {
         "id": "tx_1793813114072",
@@ -1169,6 +1169,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793990577645
+    "updated_at": 1793992272896
   }
 }
