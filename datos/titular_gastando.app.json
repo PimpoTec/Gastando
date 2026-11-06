@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793997493841,
-  "updated_iso": "2026-11-06T20:38:14.131Z",
+  "updated_at": 1793997587377,
+  "updated_iso": "2026-11-06T20:39:47.529Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -742,7 +742,7 @@
         "cotizacion_fija_dia": false,
         "medio_codigo": "visa",
         "categoria": "Supermercado",
-        "es_previsto_pendiente": true,
+        "es_previsto_pendiente": false,
         "devolucion_esperada": 0,
         "devolucion_modo": null,
         "devolucion_cobrada": false,
@@ -1167,6 +1167,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793997493841
+    "updated_at": 1793997587377
   }
 }
