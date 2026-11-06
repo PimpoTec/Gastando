@@ -1,15 +1,15 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793624172598,
-  "updated_iso": "2026-11-02T12:56:12.750Z",
+  "updated_at": 1793957395721,
+  "updated_iso": "2026-11-06T09:29:55.873Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793624172598,
+    "updated_at": 1793957395721,
     "profile": {
-      "sueldo_base": 0,
+      "sueldo_base": 2044,
       "divisor_horas": 200,
       "recargo_hs_extra": 1.5,
-      "cotizacion_usd_default": 1565
+      "cotizacion_usd_default": 1540
     },
     "categories": [
       {
@@ -58,7 +58,7 @@
       "2026-11": {
         "anio": 2026,
         "mes": 11,
-        "sueldo_mes": 0,
+        "sueldo_mes": 2044,
         "balance_inicial": 0,
         "horas_extras_real": 0,
         "horas_extras_50": 0,
@@ -69,7 +69,15 @@
         "cierre_visa": "24/11/2026",
         "vencimiento_visa": "06/12/2026",
         "cierre_master": "22/11/2026",
-        "vencimiento_master": "04/12/2026"
+        "vencimiento_master": "04/12/2026",
+        "pagados_mes": {},
+        "sueldo_cobrado": true,
+        "sueldo_fecha_cobro": "",
+        "hs50_cobradas": false,
+        "hs50_fecha_cobro": "",
+        "hs100_cobradas": false,
+        "hs100_fecha_cobro": "",
+        "ingresos_extras_items": []
       },
       "2026-10": {
         "anio": 2026,
@@ -85,7 +93,15 @@
         "cierre_visa": "19/11/2026",
         "vencimiento_visa": "06/12/2026",
         "cierre_master": "26/11/2026",
-        "vencimiento_master": "13/12/2026"
+        "vencimiento_master": "13/12/2026",
+        "pagados_mes": {},
+        "sueldo_cobrado": true,
+        "sueldo_fecha_cobro": "",
+        "hs50_cobradas": false,
+        "hs50_fecha_cobro": "",
+        "hs100_cobradas": false,
+        "hs100_fecha_cobro": "",
+        "ingresos_extras_items": []
       },
       "2026-01": {
         "anio": 2026,
