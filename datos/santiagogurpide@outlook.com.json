@@ -1,10 +1,10 @@
 {
   "email": "santiagogurpide@outlook.com",
-  "updated_at": 1793957521937,
-  "updated_iso": "2026-11-06T09:32:02.089Z",
+  "updated_at": 1793957583186,
+  "updated_iso": "2026-11-06T09:33:03.339Z",
   "app_state_json": {
     "userId": "mail_santiagogurpide@outlook.com",
-    "updated_at": 1793957521937,
+    "updated_at": 1793957583186,
     "profile": {
       "sueldo_base": 2044335,
       "divisor_horas": 200,
@@ -59,7 +59,7 @@
         "anio": 2026,
         "mes": 11,
         "sueldo_mes": 2044335,
-        "balance_inicial": 0,
+        "balance_inicial": 8958.1,
         "horas_extras_real": 0,
         "horas_extras_50": 0,
         "horas_extras_100": 0,
