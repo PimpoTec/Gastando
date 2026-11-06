@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793992493775,
-  "updated_iso": "2026-11-06T19:14:53.927Z",
+  "updated_at": 1793992494565,
+  "updated_iso": "2026-11-06T19:14:57.421Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -235,7 +235,7 @@
             "id": "iex_1793804258375_qp5r",
             "descripcion": "Gastos",
             "monto_ars": 170000,
-            "cobrado": true,
+            "cobrado": false,
             "fecha_cobro": "06/11/2026"
           },
           {
@@ -1169,6 +1169,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793992493775
+    "updated_at": 1793992494565
   }
 }
