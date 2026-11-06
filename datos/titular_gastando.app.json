@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1793997285113,
-  "updated_iso": "2026-11-06T20:34:45.264Z",
+  "updated_at": 1793997288198,
+  "updated_iso": "2026-11-06T20:34:48.719Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -228,14 +228,14 @@
             "id": "iex_1793802574210_r5l4",
             "descripcion": "Viajes",
             "monto_ars": 200000,
-            "cobrado": true,
+            "cobrado": false,
             "fecha_cobro": "06/11/2026"
           },
           {
             "id": "iex_1793804258375_qp5r",
             "descripcion": "Gastos",
             "monto_ars": 170000,
-            "cobrado": true,
+            "cobrado": false,
             "fecha_cobro": "06/11/2026"
           },
           {
@@ -1094,8 +1094,10 @@
         "categoria": "General",
         "devolucion_esperada": 77000,
         "devolucion_modo": "full",
-        "devolucion_cobrada": false,
-        "archived_in_closed_cycle": true
+        "devolucion_cobrada": true,
+        "archived_in_closed_cycle": true,
+        "devolucion_cobrada_anio": 2026,
+        "devolucion_cobrada_mes": 11
       },
       {
         "id": "tx_1792709624969",
@@ -1169,6 +1171,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1793997285113
+    "updated_at": 1793997288198
   }
 }
