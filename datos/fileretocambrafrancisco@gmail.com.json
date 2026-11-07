@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794019462735,
-  "updated_iso": "2026-11-07T02:44:22.887Z",
+  "updated_at": 1794019473861,
+  "updated_iso": "2026-11-07T02:44:34.013Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -686,6 +686,25 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1794019473861",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "06/11/2026",
+        "descripcion": "Cena",
+        "monto_ars": 30000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "efectivo",
+        "categoria": "Supermercado",
+        "es_previsto_pendiente": false,
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1793833699338",
         "anio": 2026,
         "mes": 11,
@@ -1160,6 +1179,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794019462735
+    "updated_at": 1794019473861
   }
 }
