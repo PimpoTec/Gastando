@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794084379558,
-  "updated_iso": "2026-11-07T20:46:19.709Z",
+  "updated_at": 1794237417674,
+  "updated_iso": "2026-11-09T15:16:57.826Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -786,13 +786,13 @@
         "mes": 11,
         "fecha": "04/11/2026",
         "descripcion": "Selva",
-        "monto_ars": 50000,
+        "monto_ars": 62000,
         "monto_usd": null,
         "cotizacion": null,
         "cotizacion_fija_dia": false,
         "medio_codigo": "visa",
         "categoria": "Supermercado",
-        "es_previsto_pendiente": true,
+        "es_previsto_pendiente": false,
         "devolucion_esperada": 0,
         "devolucion_modo": null,
         "devolucion_cobrada": false,
@@ -1217,6 +1217,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794084379558
+    "updated_at": 1794237417674
   }
 }
