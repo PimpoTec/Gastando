@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794321134990,
-  "updated_iso": "2026-11-10T14:32:15.143Z",
+  "updated_at": 1794355673591,
+  "updated_iso": "2026-11-11T00:07:53.744Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -190,7 +190,7 @@
         "sueldo_mes": 2700000,
         "balance_inicial": 0,
         "horas_extras_real": 17,
-        "reintegro_real": 80000,
+        "reintegro_real": 230000,
         "cotizacion_usd": 1575,
         "cierre_visa": "26/11/2026",
         "vencimiento_visa": "04/12/2026",
@@ -233,6 +233,13 @@
             "monto_ars": 10000,
             "cobrado": true,
             "fecha_cobro": "06/11/2026"
+          },
+          {
+            "id": "iex_1794355673589_ivkv",
+            "descripcion": "Regalo ceci",
+            "monto_ars": 150000,
+            "cobrado": false,
+            "fecha_cobro": ""
           }
         ]
       },
@@ -1255,6 +1262,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794321134990
+    "updated_at": 1794355673591
   }
 }
