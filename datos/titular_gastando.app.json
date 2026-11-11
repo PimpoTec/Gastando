@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794434269389,
-  "updated_iso": "2026-11-11T21:57:51.138Z",
+  "updated_at": 1794436927641,
+  "updated_iso": "2026-11-11T22:42:07.795Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -693,6 +693,25 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1794436927640",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "11/11/2026",
+        "descripcion": "Simu",
+        "monto_ars": 70000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "visa",
+        "categoria": "General",
+        "es_previsto_pendiente": false,
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1794434269389",
         "anio": 2026,
         "mes": 11,
@@ -1281,6 +1300,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794434269389
+    "updated_at": 1794436927641
   }
 }
