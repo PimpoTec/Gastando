@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794436931824,
-  "updated_iso": "2026-11-11T22:42:11.977Z",
+  "updated_at": 1794529647252,
+  "updated_iso": "2026-11-13T00:27:27.406Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -190,7 +190,7 @@
         "sueldo_mes": 2700000,
         "balance_inicial": 0,
         "horas_extras_real": 17,
-        "reintegro_real": 230000,
+        "reintegro_real": 300000,
         "cotizacion_usd": 1575,
         "cierre_visa": "26/11/2026",
         "vencimiento_visa": "04/12/2026",
@@ -240,6 +240,13 @@
             "monto_ars": 150000,
             "cobrado": true,
             "fecha_cobro": "10/11/2026"
+          },
+          {
+            "id": "iex_1794529647252_uojo",
+            "descripcion": "Regalo tia",
+            "monto_ars": 70000,
+            "cobrado": false,
+            "fecha_cobro": ""
           }
         ]
       },
@@ -1281,6 +1288,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794436931824
+    "updated_at": 1794529647252
   }
 }
