@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794583196711,
-  "updated_iso": "2026-11-13T15:19:56.865Z",
+  "updated_at": 1794583199201,
+  "updated_iso": "2026-11-13T15:20:00.639Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -252,8 +252,8 @@
             "id": "iex_1794583196711_hhfx",
             "descripcion": "Regalo tia",
             "monto_ars": 60000,
-            "cobrado": false,
-            "fecha_cobro": ""
+            "cobrado": true,
+            "fecha_cobro": "13/11/2026"
           }
         ]
       },
@@ -1295,6 +1295,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794583196711
+    "updated_at": 1794583199201
   }
 }
