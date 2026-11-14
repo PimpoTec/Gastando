@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794583365760,
-  "updated_iso": "2026-11-13T15:22:45.912Z",
+  "updated_at": 1794617244231,
+  "updated_iso": "2026-11-14T00:47:24.384Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -707,6 +707,25 @@
     ],
     "spotTransactions": [
       {
+        "id": "tx_1794617244231",
+        "anio": 2026,
+        "mes": 11,
+        "fecha": "13/11/2026",
+        "descripcion": "Estaciónamienti",
+        "monto_ars": 20000,
+        "monto_usd": null,
+        "cotizacion": null,
+        "cotizacion_fija_dia": false,
+        "medio_codigo": "visa",
+        "categoria": "Auto",
+        "es_previsto_pendiente": false,
+        "devolucion_esperada": 0,
+        "devolucion_modo": null,
+        "devolucion_cobrada": false,
+        "devolucion_cobrada_anio": null,
+        "devolucion_cobrada_mes": null
+      },
+      {
         "id": "tx_1794436927640",
         "anio": 2026,
         "mes": 11,
@@ -1295,6 +1314,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794583365760
+    "updated_at": 1794617244231
   }
 }
