@@ -1,14 +1,14 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794617244231,
-  "updated_iso": "2026-11-14T00:47:24.384Z",
+  "updated_at": 1794936091319,
+  "updated_iso": "2026-11-17T17:21:31.470Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
       "sueldo_base": 2700000,
       "divisor_horas": 200,
       "recargo_hs_extra": 1.5,
-      "cotizacion_usd_default": 1575
+      "cotizacion_usd_default": 1540
     },
     "categories": [
       {
@@ -75,7 +75,7 @@
       "2027-01": {
         "anio": 2027,
         "mes": 1,
-        "sueldo_mes": 0,
+        "sueldo_mes": 2700000,
         "balance_inicial": 0,
         "horas_extras_real": 0,
         "reintegro_real": 0,
@@ -110,7 +110,15 @@
         "vencimiento_master": "04/03/2027",
         "horas_extras_50": 0,
         "horas_extras_100": 0,
-        "devolucion_manual": 0
+        "devolucion_manual": 0,
+        "pagados_mes": {},
+        "sueldo_cobrado": true,
+        "sueldo_fecha_cobro": "",
+        "hs50_cobradas": false,
+        "hs50_fecha_cobro": "",
+        "hs100_cobradas": false,
+        "hs100_fecha_cobro": "",
+        "ingresos_extras_items": []
       },
       "2027-03": {
         "anio": 2027,
@@ -126,7 +134,15 @@
         "vencimiento_master": "04/04/2027",
         "horas_extras_50": 0,
         "horas_extras_100": 0,
-        "devolucion_manual": 0
+        "devolucion_manual": 0,
+        "pagados_mes": {},
+        "sueldo_cobrado": true,
+        "sueldo_fecha_cobro": "",
+        "hs50_cobradas": false,
+        "hs50_fecha_cobro": "",
+        "hs100_cobradas": false,
+        "hs100_fecha_cobro": "",
+        "ingresos_extras_items": []
       },
       "2027-04": {
         "anio": 2027,
@@ -1314,6 +1330,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794617244231
+    "updated_at": 1794936091319
   }
 }
