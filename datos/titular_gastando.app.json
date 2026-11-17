@@ -1,7 +1,7 @@
 {
   "email": "fileretocambrafrancisco@gmail.com",
-  "updated_at": 1794936211952,
-  "updated_iso": "2026-11-17T17:23:32.103Z",
+  "updated_at": 1794936297231,
+  "updated_iso": "2026-11-17T17:24:57.389Z",
   "app_state_json": {
     "userId": "mail_fileretocambrafrancisco@gmail.com",
     "profile": {
@@ -88,7 +88,7 @@
         "horas_extras_100": 0,
         "devolucion_manual": 0,
         "pagados_mes": {},
-        "sueldo_cobrado": true,
+        "sueldo_cobrado": false,
         "sueldo_fecha_cobro": "",
         "hs50_cobradas": false,
         "hs50_fecha_cobro": "",
@@ -1354,6 +1354,6 @@
         "devolucion_cobrada_mes": null
       }
     ],
-    "updated_at": 1794936211952
+    "updated_at": 1794936297231
   }
 }
